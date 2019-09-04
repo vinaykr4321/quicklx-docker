@@ -1,0 +1,28 @@
+.my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.progress {
+    background-color: #eceeef;
+    font-size: 0.75rem;
+    display: flex;
+    overflow: hidden;
+    line-height: 1rem;
+    text-align: center;
+    border-radius: .25rem;
+}
+
+/*
+ * Custom code
+ * Syllametrics
+ * Update: Oct 29, 2018
+ * Remove CSS conflict with Rem
+*/
+/*.card-block .alert {
+    padding: 0.5rem 1rem !important;
+}*/
+
+.card-block .coursetitle, .card-block .learningpathtitle {
+    font-size: 1.5rem;
+}

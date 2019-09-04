@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/base/db" VERSION="20180425" COMMENT="XMLDB file for Moodle local/base"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="schedule_report_config" COMMENT="Configaration of schedule report">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="reportname" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="report name and screen make the schedule report"/>
+        <FIELD NAME="screen" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="format" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="emailusers" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>     
+        <FIELD NAME="emailsubject" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="emailbody" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="reportdelivery" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="startrange" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="endrange" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="schedule" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="opt1" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="opt2" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="opt3" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="opt4" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="starttime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="startdate" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="enddate" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="lastrun" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="nextrun" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>      
+        <FIELD NAME="pause" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>      
+        <FIELD NAME="delete" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>      
+       </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+      <TABLE NAME="schedule_report_filter" COMMENT="filter used in schedule report">
+      <FIELDS>
+		<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+		<FIELD NAME="configid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+		<FIELD NAME="departmentid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+		<FIELD NAME="activestatus" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		<FIELD NAME="user" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		<FIELD NAME="firstname" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+		<FIELD NAME="lastname" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+		<FIELD NAME="username" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+		<FIELD NAME="email" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+		<FIELD NAME="country" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>     
+		<FIELD NAME="course" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>     
+		<FIELD NAME="organization" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		<FIELD NAME="completionstatus" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		<FIELD NAME="enrolledstatus" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		<FIELD NAME="daterange" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>     
+		<FIELD NAME="datefrom" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		<FIELD NAME="dateto" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+       </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

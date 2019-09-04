@@ -1,0 +1,285 @@
+td.inprogress {
+    background-color: yellow;
+    }
+
+td.notstarted {
+    background-color: #ff3333;
+    }
+
+td.completed {
+    background-color: #33ff33;
+    }
+
+#ReportTable  td {
+	vertical-align: middle !important;
+}
+
+div#piechart {
+    width: 360px;
+    height: 200px;
+    padding: 5px;
+    margin: 0 auto;
+    border: 2px #888 solid;
+    background-color: #fff;
+    }
+
+#page-local-report_reportcard-index .col-md-9 {
+    clear: none;
+}
+
+#ReportTable  thead {
+	color: black !important;
+    background-color: #a09c9c !important; 
+	vertical-align: middle !important;
+}
+.generaltable thead th {
+    vertical-align: middle !important;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+
+
+.selectBoxcourse {
+  position: relative;
+}
+
+.selectBoxcourse select {
+  width: 100%;
+  
+}
+
+.overSelectcourse {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxescourse {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxescourse label {
+  display: block;
+}
+
+
+.multiselect {
+	width: 253px;
+	display: inline-block;
+	margin-left: 26%;
+
+}
+.filter-elements .fitem {
+	display: none;
+}
+.filter-elements .fitem.show {
+	display: block;
+}
+/*
+.multiselect select {
+    padding: .375rem 1.75rem .375rem .75rem;
+    color: #55595c;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+*/
+.multiselect+.go-btn {
+    position: absolute;
+    margin-left: 15px;
+}
+.multiselect label {
+    padding: 5px 10px 0px 10px;
+}
+/*[data-groupname="dateto"],
+[data-groupname="datefrom"] {
+    margin-left: 5px;
+}
+* */
+.show-per-page select {
+    padding: .375rem 1.75rem .375rem .75rem;
+    color: #55595c;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+.show-per-page  {
+    width: 22%;
+    left: 70%;
+    position: relative;
+}
+.active-label{
+    position: absolute;
+
+}
+.schedule-elements .form-group {
+	display: none;
+}
+.schedule-elements .form-group.show {
+	display: block;
+}
+.end-date .form-group {
+	display: none;
+}
+.end-date .form-group.show {
+	display: block;
+}
+.datefilter-elements .fitem {
+	display: none;
+}
+.datefilter-elements .fitem.show {
+	display: inherit;
+}
+
+#ReportTable td{
+    position: relative;
+}
+.myContentHover {
+    display: none;
+     position: absolute;
+    border: 1px solid #eee;
+    background: #fff;
+    min-width: 370px;
+    min-height: 300px;
+    z-index: 1;
+    box-shadow: 1px 1px 3px #989393;
+    top: -150%;
+    left: 40px;
+}
+.has-tooltip:hover .myContentHover,
+a.myHoverTitle.showtooltip+.myContentHover{
+	display: block;
+}
+td.has-tooltip:before {
+    content: "";
+    border: 10px solid #989393;
+    border-color: transparent #ecebeb transparent transparent;
+    position: absolute;
+    left: 20px;
+    top: 45%;
+    display: none;
+}
+td.has-tooltip:hover:before {
+    display: block;
+}
+/*#region-main>.card.card-block {
+  overflow: visible;
+}*/
+.contentlabel{
+	display:inline-block;
+	width:45% !important;
+	text-align:right !important;
+}
+.contentdata{
+	padding-left:30px;
+}
+.col-md-3 {
+    float: left !important;
+
+}
+.usr-srch-field{
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    width: 253px;
+    border-color: bisque;
+}
+.singlebutton{
+margin-right: 3px;
+}
+.usernameselect{
+    background-color: #ececec;
+    margin-left: 15px;
+    display: inline-block;
+    padding: 2px 5px;
+}
+.usernameselect span.close {
+    margin-left: 6px;
+    font-size: 17px;
+}
+#selectedusername{
+    margin-left: 23%;
+}
+
+
+.dup-choices .search-field {
+  display: none;
+}
+.dup-choices ul {
+  overflow: hidden;
+  padding: 0;
+}
+.dup-choices li.search-choice {
+
+    position: relative;
+    margin: 3px 5px 3px 0;
+    padding: 3px 20px 3px 5px;
+    border: 1px solid #aaa;
+    max-width: 100%;
+    border-radius: 3px;
+    background-color: #eeeeee;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), to(#eee));
+    background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%);
+    background-size: 100% 19px;
+    background-repeat: repeat-x;
+    background-clip: padding-box;
+    -webkit-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+    color: #333;
+    line-height: 13px;
+    cursor: default;
+    
+      float: left;
+    list-style: none;
+    
+}
+.dup-choices .search-choice-close {
+  position: absolute;
+  top: 4px;
+  right: 3px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: url(chosen-sprite.png) -42px 1px no-repeat;
+  font-size: 1px;
+}
+.dup-choices .search-choice-close:hover {
+  background-position: -42px -10px;
+}
+.dup-choices ~ .chosen-container-multi .search-choice {
+  display: none;
+}
+
+

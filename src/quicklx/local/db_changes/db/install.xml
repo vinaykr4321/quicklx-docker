@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/db_changes/db" VERSION="2018120300" COMMENT="XMLDB file for db_changes"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="companylicense_permitted" COMMENT="companylicense_permitted instances">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="licenseid" TYPE="int" LENGTH="20" NOTNULL="true" />
+        <FIELD NAME="companyid" TYPE="int" LENGTH="20" NOTNULL="true" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for companylicense_permitted"/>
+      </KEYS>
+    </TABLE>
+
+    <TABLE NAME="companylicense_tags" COMMENT="companylicense_tags instances">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="licenseid" TYPE="int" LENGTH="20" NOTNULL="true" />
+        <FIELD NAME="courseid" TYPE="int" LENGTH="20" NOTNULL="true" />
+        <FIELD NAME="tagid" TYPE="int" LENGTH="20" NOTNULL="true" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for companylicense_tags"/>
+      </KEYS>
+    </TABLE>
+    
+  </TABLES>
+</XMLDB>

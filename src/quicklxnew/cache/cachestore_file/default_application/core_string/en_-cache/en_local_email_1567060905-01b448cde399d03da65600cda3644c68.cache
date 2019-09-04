@@ -1,0 +1,126 @@
+a:160:{s:19:"add_template_button";s:7:"Replace";s:14:"addnewtemplate";s:27:"Override a default template";s:10:"blocktitle";s:15:"Email Templates";s:4:"body";s:4:"Body";s:8:"controls";s:8:"Controls";s:8:"crontask";s:22:"Iomad email processing";s:6:"custom";s:6:"custom";s:7:"default";s:7:"default";s:15:"delete_template";s:15:"Delete template";s:22:"delete_template_button";s:17:"Revert to default";s:25:"delete_template_checkfull";s:72:"Are you absolutely sure you want to revert {$a} to the default template?";s:13:"edit_template";s:19:"Edit email template";s:13:"editatemplate";s:25:"Edit an override template";s:17:"emailtemplatename";s:19:"Email template name";s:10:"email_data";s:22:"Data for substitutions";s:19:"email_templates_for";s:26:"Email templates for '{$a}'";s:14:"email_template";s:51:"Email template '{$a->name}' for '{$a->companyname}'";s:19:"email_template_send";s:78:"Send message to all applicable users of '{$a->companyname}' using '{$a->name}'";s:9:"email:add";s:32:"Override Default Email Templates";s:12:"email:delete";s:33:"Revert to Default Email Templates";s:10:"email:edit";s:20:"Edit Email Templates";s:10:"email:list";s:20:"List Email Templates";s:10:"email:send";s:27:"Send emails using templates";s:8:"language";s:8:"Language";s:13:"language_help";s:134:"This is the list of currently installed language packs.  Changing the language will replace the templates for that language pack only.";s:8:"override";s:7:"Replace";s:10:"pluginname";s:12:"Local: Email";s:16:"privacy:metadata";s:71:"The Iomad Local Email plugin only shows data stored in other locations.";s:33:"save_to_override_default_template";s:32:"Save to replace default template";s:16:"select_email_var";s:21:"Select email variable";s:13:"select_course";s:13:"Select course";s:11:"send_button";s:4:"Send";s:11:"send_emails";s:12:"Send e-mails";s:7:"subject";s:7:"Subject";s:19:"template_list_title";s:15:"Email Templates";s:12:"templatetype";s:13:"Template type";s:20:"approval_description";s:77:"Template sent out to managers when a user has asked for approval to a course.";s:13:"approval_name";s:31:"Manager course request approval";s:16:"approval_subject";s:19:"New course approval";s:13:"approval_body";s:218:"<p>You have been asked to approve access to course {Course_FullName} for {User_FirstName} {User_LastName}.</p>
+<p>please log onto {Site_FullName} (<a href="{LinkURL}">{LinkURL}</a>) to approve or deny this request.</p>";s:20:"approved_description";s:74:"Template sent out to users when they have been granted access to a course.";s:13:"approved_name";s:27:"User course access approved";s:16:"approved_subject";s:50:"You have been approved access to {Course_FullName}";s:13:"approved_body";s:136:"<p>You have been granted access to course {Course_FullName}.  To access this, please click on <a href="{CourseURL}">{CourseURL}</a>.</p>";s:37:"course_classroom_approval_description";s:85:"Template sent out to managers when a user has asked for approval to a training event.";s:30:"course_classroom_approval_name";s:39:"Manager training event approval request";s:33:"course_classroom_approval_subject";s:40:"New face to face training event approval";s:30:"course_classroom_approval_body";s:434:"<p>You have been asked to approve access to the face to face training course {Event_Name} for {Approveuser_FirstName} {Approveuser_LastName} at the following event -</p>
+<br>
+Time : {Classroom_Time}</br>
+Location : {Classroom_Name}</br>
+Address : {Classroom_Address}</br>
+          {Classroom_City} {Classroom_Postcode}</br>
+</br>
+<p>please log onto {Site_FullName} (http://localhost:8001/quicklx) to approve or deny this request.</p>";s:37:"course_classroom_approved_description";s:82:"Template sent out to users when they have been granted access to a training event.";s:30:"course_classroom_approved_name";s:35:"User training event access approved";s:33:"course_classroom_approved_subject";s:36:"Face to face training event approved";s:30:"course_classroom_approved_body";s:261:"<p>You have been approved access to the face to face training course {Event_Name} at the following event -</p>
+</br>
+Time : {Classroom_Time}</br>
+Location : {Classroom_Name}</br>
+Address : {Classroom_Address}</br>
+          {Classroom_City} {Classroom_Postcode}";s:35:"course_classroom_denied_description";s:81:"Template sent out to users when they have been denied access to a training event.";s:28:"course_classroom_denied_name";s:33:"User training event access denied";s:31:"course_classroom_denied_subject";s:43:"Face to face training event approval denied";s:28:"course_classroom_denied_body";s:239:"<p>Your approval request has been rejected for {Event_Name} at the following event -</p>
+</br>
+Time : {Classroom_Time}</br>
+Location : {Classroom_Name}</br>
+Address : {Classroom_Address}</br>
+          {Classroom_City} {Classroom_Postcode}";s:43:"course_classroom_manager_denied_description";s:95:"Template sent out to department manager when a user has been denied access to a training event.";s:36:"course_classroom_manager_denied_name";s:49:"Department mananager training event access denied";s:39:"course_classroom_manager_denied_subject";s:62:"Face to face training event approval denied by company manager";s:36:"course_classroom_manager_denied_body";s:340:"<p>The approval request for {Approveuser_FirstName} {Approveuser_LastName} has been rejected by {User_FirstName} {User_LastName} ({User_Email}) for {Event_Name} at the following event -</p>
+</br>
+Time : {Classroom_Time}</br>
+Location : {Classroom_Name}</br>
+Address : {Classroom_Address}</br>
+          {Classroom_City} {Classroom_Postcode}";s:45:"course_classroom_approval_request_description";s:71:"Template sent out to user when they request access to a training event.";s:38:"course_classroom_approval_request_name";s:40:"User training event request confirmation";s:41:"course_classroom_approval_request_subject";s:53:"New face to face training event approval request sent";s:38:"course_classroom_approval_request_body";s:339:"<p>You have asked for access to the face to face training course {Event_Name} at the following event -</p>
+</br>
+Time : {Classroom_Time}</br>
+Location : {Classroom_Name}</br>
+Address : {Classroom_Address}</br>
+          {Classroom_City} {Classroom_Postcode}</br>
+<p>You will be notified once your manager has approved or denied access.</p>";s:36:"courseclassroom_approved_description";s:82:"Template sent out to users when they have been granted access to a training event.";s:29:"courseclassroom_approved_name";s:28:"User training event approved";s:32:"courseclassroom_approved_subject";s:45:"You have been approved access to {Event_Name}";s:29:"courseclassroom_approved_body";s:130:"<p>You have been granted access to course {Event_Name}.  To access this, please click on <a href="{CourseURL}">{CourseURL}</a>.<p>";s:36:"course_completed_manager_description";s:62:"Template sent out to a manager when a user completes a course.";s:29:"course_completed_manager_name";s:31:"Manager course completed report";s:32:"course_completed_manager_subject";s:32:"Student course completion report";s:29:"course_completed_manager_body";s:55:"<p>Dear {User_FirstName}</p>
+<p>{Course_ReportText}</p>";s:32:"user_added_to_course_description";s:62:"Template sent out to users when they are enrolled on a course.";s:25:"user_added_to_course_name";s:23:"User enrolled on course";s:28:"user_added_to_course_subject";s:26:"Added to {Course_FullName}";s:25:"user_added_to_course_body";s:196:"<p>Dear {User_FirstName}</p>
+<br>
+<p>You have been granted access to the online training for {Course_FullName}.  Please visit <a href="{CourseURL}">{CourseURL}</a> to partake in this training.</p>";s:33:"invoice_ordercomplete_description";s:73:"Template sent out to a user when they raise an invoice order in the shop.";s:26:"invoice_ordercomplete_name";s:26:"User invoice order created";s:29:"invoice_ordercomplete_subject";s:44:"Thank you for your order at {Site_ShortName}";s:26:"invoice_ordercomplete_body";s:284:"<p>Dear {User_FirstName} {User_LastName}</p>
+<p>Your order reference is {Invoice_Reference}</p>
+<p>Thank you for your order of the following:</p>
+<p>{Invoice_Itemized}</p>
+<p>Once this invoice has been paid licenses will be created or enrolments will be done by the administrator.</p>";s:39:"invoice_ordercomplete_admin_description";s:71:"Template sent out to the shop admin when an invoice order is generated.";s:32:"invoice_ordercomplete_admin_name";s:27:"Admin invoice order created";s:35:"invoice_ordercomplete_admin_subject";s:46:"E-commerce order (invoice {Invoice_Reference})";s:32:"invoice_ordercomplete_admin_body";s:219:"<p>Dear e-commerce admin</p>
+<p>The following order has just been submitted by {Invoice_FirstName} {Invoice_LastName} of {Invoice_Company}.</br>
+An invoice has been sent to them via email.</p>
+
+<p>{Invoice_Itemized}</p>";s:44:"advertise_classroom_based_course_description";s:65:"Template sent out when a manager advertises a new training event.";s:37:"advertise_classroom_based_course_name";s:24:"Advertise training event";s:40:"advertise_classroom_based_course_subject";s:24:"Course {Course_FullName}";s:37:"advertise_classroom_based_course_body";s:416:"<o>This to let you know about the following classroom based course:</p>
+<p>{Course_FullName}</p>
+
+<p>It will be in {Classroom_Name}, which is at</p>
+<p>{Classroom_Address}</br>
+{Classroom_City} {Classroom_Postcode}</br>
+{Classroom_Country}</br>
+
+<p>and has a capacity of {Classroom_Capacity}.</p>
+
+<p>Please click on <a href="{CourseURL}">{CourseURL}</a> to find out more about this course and book on this event</p>";s:36:"user_signed_up_for_event_description";s:106:"Template sent out to a user when they sign up for a training event which doesn't require manager approval.";s:29:"user_signed_up_for_event_name";s:27:"User training event sign up";s:32:"user_signed_up_for_event_subject";s:35:"Attendance Notice {Course_FullName}";s:29:"user_signed_up_for_event_body";s:374:"<p>Dear {User_FirstName},</p>
+
+<p>you have signed up for the face to face training on {Course_FullName} at the following event -</p>
+
+<p>Time : {Classroom_Time}</br>
+Location : {Classroom_Name}</br>
+Address : {Classroom_Address}</br>
+          {Classroom_City} {Classroom_Postcode}</br>
+
+<p>Please ensure you have completed an pre-course tasks required before attendance</p>";s:35:"user_removed_from_event_description";s:95:"Template sent out to a user for confirmation when they have been removed from a training event.";s:28:"user_removed_from_event_name";s:29:"User training event cancelled";s:31:"user_removed_from_event_subject";s:37:"Cancellation Notice {Course_FullName}";s:28:"user_removed_from_event_body";s:302:"<p>Dear {User_FirstName},</p>
+
+<p>you have been marked as no longer attending the face to face training on {Course_FullName} at the following event -</p>
+
+<p>Time : {Classroom_Time}</br>
+Location : {Classroom_Name}</br>
+Address : {Classroom_Address}</br>
+          {Classroom_City} {Classroom_Postcode}";s:29:"license_allocated_description";s:80:"Template sent out to a user when they have been allocated a license on a course.";s:22:"license_allocated_name";s:22:"User license allocated";s:25:"license_allocated_subject";s:42:"Access to course {Course_FullName} granted";s:22:"license_allocated_body";s:334:"<p>Dear {User_FirstName},</p>
+
+<p>You have been granted access to the online training for {Course_FullName}.  Please visit <a href="{CourseURL}">{CourseURL}</a> to partake in this training.</br>
+Once you have entered the course you will have access to it for {License_Length} days.  Unused access will expire after {License_Valid}</p>";s:28:"license_reminder_description";s:134:"Template sent out to a user when a manager sends them a reminder that they have not yet access a course they were given a license for.";s:21:"license_reminder_name";s:32:"User license activation reminder";s:24:"license_reminder_subject";s:62:"Reminder: you have been allocated the course {Course_FullName}";s:21:"license_reminder_body";s:334:"<p>Dear {User_FirstName},</p>
+
+<p>You have been granted access to the online training for {Course_FullName}.  Please visit <a href="{CourseURL}">{CourseURL}</a> to partake in this training.</br>
+Once you have entered the course you will have access to it for {License_Length} days.  Unused access will expire after {License_Valid}</p>";s:27:"license_removed_description";s:77:"Template sent out to a user when a course license has been taken off of them.";s:20:"license_removed_name";s:26:"User course licese revoked";s:23:"license_removed_subject";s:42:"Access to course {Course_FullName} removed";s:20:"license_removed_body";s:132:"<p>Your access to course {Course_FullName} has been revoked.  If you feel this is in error, please contact your training manager</p>";s:27:"password_update_description";s:78:"Template sent out to a user when their password has been changed by a manager.";s:20:"password_update_name";s:21:"User password changed";s:23:"password_update_subject";s:49:"Password change notification for {User_FirstName}";s:20:"password_update_body";s:185:"<p>Your password has been updated by the administrative staff.  Your new password is</p>
+
+<p>{User_Newpassword}</p>
+
+<p>Please visit <a href="{LinkURL}">{LinkURL}</a> to change this</p>";s:32:"completion_warn_user_description";s:89:"Template sent out to a user when they have not completed a course in the configured time.";s:25:"completion_warn_user_name";s:30:"User course completion warning";s:28:"completion_warn_user_subject";s:55:"Notice: Course {Course_FullName} has not been completed";s:25:"completion_warn_user_body";s:170:"<p>Dear {User_FirstName},</p>
+<p>You have still not completed your training on {Course_FullName}.  Please visit <a href="{CourseURL}">{CourseURL}</a> to rectify this.</p>";s:35:"completion_warn_manager_description";s:108:"Template sent out to a manager informing them that a user has not completed a course in the configured time.";s:28:"completion_warn_manager_name";s:40:"Manager course completion warning report";s:31:"completion_warn_manager_subject";s:30:"User completion failure report";s:28:"completion_warn_manager_body";s:148:"<p>Dear {User_FirstName},</p>
+<p>the following users have not completed their training within the normal timeframe :</p>
+
+<p>{Course_ReportText}</p>";s:37:"completion_digest_manager_description";s:150:"Template sent out to a manager informing them that users have not completed courses in a configured time when the manager emails are sent as a digest.";s:30:"completion_digest_manager_name";s:49:"Manager course completion warning report - digest";s:33:"completion_digest_manager_subject";s:22:"User completion report";s:30:"completion_digest_manager_body";s:137:"<p>Dear {User_FirstName},</p>
+<p>the following users have completed their training within the last week :</p>
+
+<p>{Course_ReportText}</p>";s:28:"expiry_warn_user_description";s:77:"Template sent out to a user when their training in a course is due to expire.";s:21:"expiry_warn_user_name";s:28:"User training expiry warning";s:24:"expiry_warn_user_subject";s:60:"Notice: Accreditation in {Course_FullName} will expire soon.";s:21:"expiry_warn_user_body";s:152:"<p>Dear {User_FirstName},</p>
+<p>your accredited training on {Course_FullName} is expiring soon.  Please arrange for re-accreditation if appropriate</p>";s:31:"expiry_warn_manager_description";s:84:"Template sent out to managers informing them of users who training is due to expire.";s:24:"expiry_warn_manager_name";s:31:"Manager training expiry warning";s:27:"expiry_warn_manager_subject";s:27:"Accreditation expiry report";s:24:"expiry_warn_manager_body";s:122:"<p>Dear {User_FirstName},</p>
+<p>the following users accreditation is due to expire soon :</p>
+
+<p>{Course_ReportText}</p>";s:18:"expire_description";s:72:"Template sent out to a user when their training in a course has expired.";s:11:"expire_name";s:21:"User training expired";s:14:"expire_subject";s:14:"Course expires";s:11:"expire_body";s:84:"<p>This is to let you know that your training in {Course_FullName} expires soon.</p>";s:26:"expire_manager_description";s:86:"Template sent out to a manager informing them of any users whose training has expired.";s:19:"expire_manager_name";s:31:"Manager training expired report";s:22:"expire_manager_subject";s:50:"Accreditation expired report for {Course_FullName}";s:19:"expire_manager_body";s:130:"<p>Dear {User_FullName},</p>
+<p>the following users accreditation in {Course_FullName} has expired :</p>
+
+<p>{User_ReportText}</p>";s:22:"user_reset_description";s:73:"Template sent out to a user when a manager resets their user information.";s:15:"user_reset_name";s:18:"User account reset";s:18:"user_reset_subject";s:50:"The login details for your account have been reset";s:15:"user_reset_body";s:275:"<p>Dear {User_FirstName},</p>
+
+<p>Your user account details are as follows.</p>
+
+<p>username: {User_Username}</br>
+password: {User_Newpassword}</br>
+(you will have to change your password when you log in)</p>
+
+<p>Best Regards,</p>
+
+<p>{Sender_FirstName} {Sender_LastName}</p>";s:23:"user_create_description";s:68:"Template sent out to a new user when a new account has been created.";s:16:"user_create_name";s:16:"New user created";s:19:"user_create_subject";s:55:"A new on-line learning account has been created for you";s:16:"user_create_body";s:799:"<p>Dear {User_FirstName},</p>
+
+<p>A new user account has been created for you on the 'Training Management System'
+and you have been issued with a new temporary password.</p>
+
+<p>Your current login information is now:<p>
+<p>username: {User_Username}</br>
+password: {User_Newpassword}</br>
+(you will have to change your password
+when you login for the first time)</p>
+
+<p>To access your learning, login at</p>
+<p><a href="{LinkURL}">{LinkURL}</a></p>
+
+<p>In most mail programs, this should appear as a blue link
+which you can just click on. If that doesn't work,
+then cut and paste the address into the address
+line at the top of your web browser window.</p>
+
+<p>For technical queries, please contact your IT Support team/Helpdesk</p>
+
+<p>Best Regards,</p>
+
+<p>{Sender_FirstName} {Sender_LastName}</p>";s:40:"completion_course_supervisor_description";s:98:"Template sent out to a users supervisor email address (if defined) when a user completed a course.";s:33:"completion_course_supervisor_name";s:35:"User's supervisor completion report";s:36:"completion_course_supervisor_subject";s:51:"Notice: Course {Course_FullName} has been completed";s:33:"completion_course_supervisor_body";s:282:"<p>{User_FirstName} {User_LastName} has completed the training course {Course_FullName}. Please find attached a copy of their certificate for your records.</p>
+
+<p>The certificate is also available from the User Report section on our system should you need a copy in the future.</p>";s:38:"completion_warn_supervisor_description";s:129:"Template sent out to a users supervisor email address (if defined) when a user has not completed a course in the configured time.";s:31:"completion_warn_supervisor_name";s:44:"User's supervisor course completion warning.";s:34:"completion_warn_supervisor_subject";s:55:"Notice: Course {Course_FullName} has not been completed";s:31:"completion_warn_supervisor_body";s:128:"<p>{User_FirstName} {User_LastName} has not completed their training in course {Course_FullName} within the normal timeframe</p>";s:34:"completion_expiry_warn_description";s:102:"Template sent out to a users supervisor email address (if defined) when a user's training has expired.";s:27:"completion_expiry_warn_name";s:42:"User's supervisor training expired warning";s:41:"completion_expiry_warn_supervisor_subject";s:48:"Notice: Course {Course_FullName} training expiry";s:38:"completion_expiry_warn_supervisor_body";s:170:"<p>The training for {User_FirstName} {User_LastName} in course {Course_FullName} will expiry shortly.  Please arrange for them to retake this training if appropriate.</p>";}

@@ -1,0 +1,2 @@
+a:5:{s:11:"explanation";s:181:"Tool generates fake data for an Iomad site. It can only be run by the administrator in Debugging mode. This 
+    is only for test sites. It will completely destroy an existing site.";s:4:"doit";s:13:"Ok. Go ahead!";s:8:"makesite";s:32:"Make IOMAD fake development site";s:12:"notdebugging";s:53:"Developer debugging mode is required to run this tool";s:10:"pluginname";s:32:"Iomad development data generator";}

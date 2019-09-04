@@ -1,0 +1,19 @@
+.message{
+	text-align: center;
+    font-weight: bold;
+    margin-top: 10%;
+}
+
+.actionbutton{
+	/*height: 10%;*/
+	margin: 10% 1%;
+	width: 100%;
+	color: #212121;
+	background-color: #DDDDDD;
+}
+.margin_right_1{
+	margin-right: 1%;
+}
+.margin_bottom_1{
+	margin-bottom: 1%;
+}

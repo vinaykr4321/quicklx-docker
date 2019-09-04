@@ -1,0 +1,21 @@
+#page-local-report_users-index .col-md-9 {
+    clear:both;
+}
+
+.table th, table.collection th, table.flexible th, .generaltable th, .table td, table.collection td, table.flexible td, .generaltable td{
+padding: 4px !important;
+}
+
+#selectperpage {
+    float: right;
+    margin-top:30px;
+}
+
+
+/*#id_usersearchfields, #id_submitbutton{
+	margin-top:15px;
+}*/
+
+
+
+

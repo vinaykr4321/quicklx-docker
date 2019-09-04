@@ -1,0 +1,570 @@
+
+<?php
+
+/**
+ *  Filter form used on the report .
+ *
+ */
+ 
+ require_once($CFG->dirroot.'/local/base/locallib.php');
+ 
+class report_registration {
+	
+	public static function get_all_eventtype(){
+		$eventtype= array('0'=>'All','1'=>'Assigned','2'=>'Unassigned','3'=>'Self-Registered','4'=>'Shortened','5'=>'Extended','6'=>'Renewed');	
+		return $eventtype;
+	}
+	public static function get_all_license($departmentid){
+		global $DB,$USER;
+		/*if (is_siteadmin()){
+			$licenses = $DB->get_records('companylicense');
+		}
+		else{*/
+			$department = $DB->get_record('department', array('id'=>$departmentid));
+			$companyid = $department->company;
+			$licenses = $DB->get_records('companylicense', array('companyid'=>$companyid));
+		/*}*/
+		$licensearray=array();
+		if($licenses){
+			foreach($licenses as $license)			
+					$licensearray[$license->id] = $license->name;		
+		}
+		natcasesort($licensearray);
+		$sellicenses=array('0'=>'Select License');
+		$licensearray = $sellicenses + $licensearray;
+
+		return $licensearray;
+	}
+	/*public static function get_company_license($companyid,$userid,$courseid){
+		global $DB,$USER;
+		// $license=$DB->get_record('companylicense',array('id'=>$licenseid));	
+		$sql = "select cl.name from {companylicense} cl 
+				join {companylicense_users} clu on (clu.licenseid=cl.id and clu.userid=$userid
+									and clu.licensecourseid=$courseid )
+				where cl.companyid=$companyid" ;
+		$license = $DB->get_record_sql($sql);
+		if($license)
+			return $license;
+		else
+			return null;
+		
+	}*/
+	public static function get_company_license($licenseid){
+		global $DB,$USER;
+		$license=$DB->get_record('companylicense',array('id'=>$licenseid));
+		if($license)
+			return $license;
+		else
+			return null;
+		
+		}			
+	public static function get_action($license){
+		//public static function get_action($comapnyid,$license){
+		//global $DB,$USER;
+		$action = $license->action;
+		$eventtype = " License Deleted";
+		/*$companylicense = $DB->get_record('companylicense',array('id'=>$licenseid));*/
+		if($license->expirydate){
+		/*$expirydate = $companylicense->expirydate;*/
+			$expirydate = $license->expirydate;
+			if($expirydate < time())
+				$eventtype = "Expired";
+           else
+			{
+				if($action == 'assigned'){
+					$eventtype = "Registered - Admin";
+				}
+				else if($action == 'unassigned'){
+					$eventtype = "Unenrolled";
+				}
+				else if($action == 'selfreg'){
+					$eventtype = "Registered - self";
+				}	
+			
+			else if($action == 'shortened'){
+				$eventtype = "Shortened - Admin";
+			}
+			else if($action == 'extended'){
+				$eventtype = "Extended - Admin";
+			}	
+			else if($action == 'renewed'){
+				$eventtype = "Renewed - Admin";
+			}
+		    }
+		
+	}
+		return $eventtype;
+		
+	}	
+	public static function get_all_license_events($params){
+		
+		global $DB,$USER;
+         
+		$count=0;
+         if(isset($params['page']))
+			$page =$params['page'];
+		else
+			$page =0;
+				
+		if(isset($params['perpage']))	
+		  $perpage = $params['perpage'];
+		  
+		$eventdate ="";  
+		if(isset($params['daterange']) && $params['daterange'] =='no' ){
+				unset($params['datefrom']); 
+				unset($params['dateto']); 	 
+		 }
+		else if(isset($params['daterange']) && $params['daterange'] =='eventdate' ){
+
+			$beginOfDay = strtotime("midnight", $params['datefrom']);
+			$endOfDay   = strtotime("tomorrow", $params['dateto']) - 1;
+
+			 $eventdate= "AND ls.timecreated > $beginOfDay AND  ls.timecreated < $endOfDay " ; 
+		
+		}
+         if(isset($params['subgroup']) && $params['subgroup'] != "0" ){
+			$departmentids =explode(",",$params['subgroup']);
+			foreach($departmentids as $key=>$value){
+					$allsubgroups[$value] = $value;
+			}
+		}
+		 else if(isset($params['organization']) && $params['organization'] != "0"){
+			$companies =explode(",",$params['organization']);
+			foreach($companies as $key=>$value){
+				$sql ="select * from {department} where parent = 0 and company=".$value;
+				$companydepartment =  $DB->get_record_sql($sql);
+				$allsubgroups[$companydepartment->id] = $companydepartment->name;
+				if($value != '0'){
+					$subgroups =base::selectsubgroup($value);
+					foreach($subgroups as $key1=>$value1){
+						if($key1 != '0'){
+							$allsubgroups[$key1] = $value1;
+						}
+					}
+				}		
+			}	
+		 }
+         else if(isset($params['departmentid'])){
+			 $departmentid = $params['departmentid'];
+			 $companies=base::get_all_organization($departmentid);
+			 foreach($companies as $key=>$value){
+				$sql ="select * from {department} where parent = 0 and company=".$key;
+				$companydepartment =  $DB->get_record_sql($sql);
+				$allsubgroups[$companydepartment->id] = $companydepartment->name;	
+				$subgroups =base::selectsubgroup($key);
+				foreach($subgroups as $key1=>$value1){
+					if($key1 != '0'){
+						$allsubgroups[$key1] = $value1;
+					}
+
+				}		
+			}
+
+		 }
+				
+        $allusers='0,';
+		if($allsubgroups){
+			foreach($allsubgroups as $key=>$value){
+				if($companyusers=$DB->get_records('company_users',array('departmentid'=>$key))){
+					foreach($companyusers as $companyuser){
+						$userid=$companyuser->userid;
+						if($user=$DB->get_record('user',array('id'=>$userid))){
+							$allusers .= $user->id.',';
+						}	
+					}
+					
+				}
+
+				
+			}
+		
+		}
+//print_object($allusers);
+//exit;
+		$allusers = trim($allusers,',');
+		//echo(print_object($allusers));
+		$onlythisusers =  " AND u.id IN ($allusers)";
+		/*		
+		  $alldepartments = company::get_all_subdepartments($departmentid);
+        
+        if (count($alldepartments) > 0 ) {
+			$departmentids = implode(',', array_keys($alldepartments));
+		}
+		if(isset($params['subgroup']) && $params['subgroup'] != "0" ){
+				$departmentids =  $params['subgroup'];
+		}
+		*/
+		$courseearch ="";
+		$usersearch ="";
+		$searchusername='';
+		$searchfirstname='';
+		$searchlastname='';
+		$searchemail='';
+		$searchcountry=''; 
+		$userfilter = '';		
+		$licensefilter = '';		
+		
+		if(!empty($params['course']) && $params['course'] != "0"){
+			$coursestr = $params['course'] ;
+			$course = explode(',',$coursestr);
+			$courses=implode(", ", $course);
+			$courseearch =" AND ls.courseid IN ($courses)" ;
+		}
+		
+		if(!empty($params['selectuser'])){
+				$usersearch =" AND u.id=".$params['selectuser'];
+		}
+		if(isset($params['user']))
+			$userfilter = " AND u.id=".$params['user'];
+		
+	   	else if(isset($params['username']) )
+				 $searchusername = " AND u.id IN (".$params['username'].") ";
+   
+		if(isset($params['firstname']) )
+				 $searchfirstname = " AND u.firstname LIKE '%".$params['firstname']."%' ";
+   
+		if(isset($params['lastname']) )
+				 $searchlastname = " AND u.lastname LIKE '%".$params['lastname']."%' ";
+				 
+		if(isset($params['email']) )
+				 $searchemail = " AND u.email LIKE '%".$params['email']."%' ";
+   
+		if(isset($params['country']) )
+				 $searchcountry = " AND u.country = '".$params['country']."' ";
+  //  if(isset($userfilter) && !empty($userfilter))
+  // {
+    // $usernamefilter =$searchusername.$searchfirstname.$searchlastname.$searchemail.$searchcountry.$usersearch.$userfilter;
+  // }
+  // else
+  // {	
+//	 $usernamefilter =$searchusername.$searchfirstname.$searchlastname.$searchemail.$searchcountry.$usersearch.$onlythisusers;
+//	}
+		$usernamefilter =$searchusername.$searchfirstname.$searchlastname.$searchemail.$searchcountry.$usersearch.$userfilter.$onlythisusers;
+			
+
+  /*if(isset($userfilter) && !empty($userfilter))
+   {
+   	
+     $usernamefilter =$searchusername.$searchfirstname.$searchlastname.$searchemail.$searchcountry.$usersearch.$userfilter;
+   }
+   elseif(isset($searchusername) && !empty($searchusername))
+   {
+      $usernamefilter =$searchusername.$searchfirstname.$searchlastname.$searchemail.$searchcountry.$usersearch;
+   }
+ elseif(isset($userfilter) && !empty($userfilter) && isset($searchusername) && !empty($searchusername))
+   {
+   	
+     $usernamefilter =$searchusername.$searchfirstname.$searchlastname.$searchemail.$searchcountry.$usersearch.$userfilter;
+   }
+
+   else
+
+   {	
+   	
+	 $usernamefilter =$searchusername.$searchfirstname.$searchlastname.$searchemail.$searchcountry.$usersearch.$onlythisusers;
+   }*/
+
+
+		$suspendedsql = " AND u.id IN (select id FROM {user} WHERE 1 $usernamefilter) ";
+		if(isset($params['activestatus']) && $params['activestatus'] == '1')
+			 $suspendedsql = " AND u.id IN (select id FROM {user} WHERE suspended = 0 AND deleted=0 $usernamefilter) ";
+
+		if(isset($params['activestatus']) && $params['activestatus'] == '2')
+			$suspendedsql = " AND u.id IN (select id FROM {user} WHERE suspended = 1 OR deleted=1 $usernamefilter) ";
+				
+//		if(isset($params['license']) )
+//			$licensefilter = " AND l.id IN (".$params['license'].") ";
+				
+						// 	 print_r($course);
+		
+		if(isset($params['eventtype']) && $params['eventtype'] ==1){
+			$event = "'\\\block_iomad_company_admin\\\\event\\\user_license_assigned'";
+			
+		}
+		else if(isset($params['eventtype']) && $params['eventtype'] ==2){
+			$event = "'\\\block_iomad_company_admin\\\\event\\\user_license_unassigned'";
+			
+		}
+		else if(isset($params['eventtype']) && $params['eventtype'] ==3){
+			$event = "'\\\block_iomad_company_admin\\\\event\\\courseeventuser_license_selfreg'";
+			
+		}
+		else if(isset($params['eventtype']) && $params['eventtype'] ==4){
+			$event = "'\\\block_iomad_company_admin\\\\event\\\user_license_shortened'";
+			
+		}
+		else if(isset($params['eventtype']) && $params['eventtype'] ==5){
+			$event = "'\\\block_iomad_company_admin\\\\event\\\user_license_extended'";
+			
+		}
+		else if(isset($params['eventtype']) && $params['eventtype'] ==6){
+			$event = "'\\\block_iomad_company_admin\\\\event\\\user_license_renewed'";
+			
+		}
+
+		else{
+			$count=1;
+		$event = "'\\\block_iomad_company_admin\\\\event\\\courseeventuser_license_selfreg',
+						'\\\block_iomad_company_admin\\\\event\\\user_license_unassigned',
+						'\\\block_iomad_company_admin\\\\event\\\user_license_shortened',
+						'\\\block_iomad_company_admin\\\\event\\\user_license_extended',
+						'\\\block_iomad_company_admin\\\\event\\\user_license_renewed',
+						'\\\block_iomad_company_admin\\\\event\\\user_license_assigned'";
+		}
+		 	/*$sql = "SELECT ls.* from {logstore_standard_log} ls
+						join {user} u on u.id = ls.userid
+						where u.deleted=0 and ls.eventname in ($event) $eventdate $suspendedsql $courseearch 
+						ORDER BY ls.timecreated ASC ";*/
+		//$sql = "SELECT @s:=@s+1 n, ls.eventname,ls.userid,ls.timecreated, ls.courseid, ls.action, ls.other, ls.objectid, u.id as uid, u.username, u.firstname, u.lastname, u.email, u.country, u.phone2, c.id as compid, c.name as compname, GROUP_CONCAT(d.name) as deptname, co.fullname, cl.name as licname, cl.expirydate FROM mdl_logstore_standard_log ls join mdl_user u on u.id = ls.userid left join mdl_company_users cu on cu.userid=ls.userid left join mdl_course co on ls.courseid=co.id join mdl_company c on cu.companyid=c.id left join mdl_companylicense cl on ls.objectid=cl.id, mdl_department d, (SELECT @s:=0) n WHERE u.deleted=0 AND cu.departmentid=d.id AND ls.eventname in ($event) $eventdate $suspendedsql $courseearch ORDER BY ls.timecreated ASC";
+
+		if(isset($params['eventtype']) && $params['eventtype'] ==1){
+			$sqlassign="SELECT @s:=@s+1 n, ls.eventname,ls.userid,ls.timecreated, ls.courseid, ls.action, ls.other, ls.objectid, u.id as uid, u.username, u.firstname, u.lastname, u.email, u.country, u.phone2, c.id as compid, c.name as compname, (SELECT GROUP_CONCAT(DISTINCT d.name ) FROM mdl_department d LEFT JOIN mdl_company_users mcu on mcu.departmentid=d.id WHERE mcu.userid=ls.userid) as deptname, co.fullname, cl.name as licname, cl.expirydate FROM mdl_logstore_standard_log ls join mdl_user u on u.id = ls.userid left join mdl_company_users cu on ls.userid=cu.userid left join mdl_course as co on ls.courseid=co.id join mdl_company c on cu.companyid=c.id left join mdl_companylicense as cl on ls.objectid=cl.id, (SELECT @s:=0) n WHERE u.deleted=0 AND ls.eventname in ($event) $eventdate $suspendedsql $courseearch GROUP BY ls.eventname, ls.userid, IF(ls.other IS NULL, ls.objectid,trim(BOTH '\"' FROM SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(ls.other, '{', -1), 'licenseid', -1),';',2),':',-1))) ORDER BY ls.timecreated DESC";
+			$events = $DB->get_records_sql($sqlassign);		
+		}
+		else
+		{
+
+			if($count == 0)
+			{
+				$sql = "SELECT @s:=@s+1 n, ls.eventname,ls.userid,ls.timecreated, ls.courseid, ls.action, ls.other, ls.objectid, u.id as uid, u.username, u.firstname, u.lastname, u.email, u.country, u.phone2, c.id as compid, c.name as compname, (SELECT GROUP_CONCAT(DISTINCT d.name ) FROM mdl_department d LEFT JOIN mdl_company_users mcu on mcu.departmentid=d.id WHERE mcu.userid=ls.userid) as deptname, co.fullname, cl.name as licname, cl.expirydate FROM mdl_logstore_standard_log ls join mdl_user u on u.id = ls.userid left join mdl_company_users cu on ls.userid=cu.userid left join mdl_course as co on ls.courseid=co.id join mdl_company c on cu.companyid=c.id left join mdl_companylicense as cl on ls.objectid=cl.id, (SELECT @s:=0) n WHERE u.deleted=0 AND ls.eventname in ($event) $eventdate $suspendedsql $courseearch GROUP BY ls.eventname, ls.userid, ls.objectid ORDER BY ls.timecreated DESC";
+				$events = $DB->get_records_sql($sql);
+			}
+			else
+			{
+				$event = "'\\\block_iomad_company_admin\\\\event\\\courseeventuser_license_selfreg',
+								'\\\block_iomad_company_admin\\\\event\\\user_license_unassigned',
+								'\\\block_iomad_company_admin\\\\event\\\user_license_shortened',
+								'\\\block_iomad_company_admin\\\\event\\\user_license_extended',
+								'\\\block_iomad_company_admin\\\\event\\\user_license_renewed'";
+
+				$sql = "SELECT @s:=@s+1 n, ls.eventname,ls.userid,ls.timecreated, ls.courseid, ls.action, ls.other, ls.objectid, u.id as uid, u.username, u.firstname, u.lastname, u.email, u.country, u.phone2, c.id as compid, c.name as compname, (SELECT GROUP_CONCAT(DISTINCT d.name ) FROM mdl_department d LEFT JOIN mdl_company_users mcu on mcu.departmentid=d.id WHERE mcu.userid=ls.userid) as deptname, co.fullname, cl.name as licname, cl.expirydate FROM mdl_logstore_standard_log ls join mdl_user u on u.id = ls.userid left join mdl_company_users cu on ls.userid=cu.userid left join mdl_course as co on ls.courseid=co.id join mdl_company c on cu.companyid=c.id left join mdl_companylicense as cl on ls.objectid=cl.id, (SELECT @s:=0) n WHERE u.deleted=0 AND ls.eventname in ($event) $eventdate $suspendedsql $courseearch GROUP BY ls.eventname, ls.userid, ls.objectid ORDER BY ls.timecreated DESC";	
+
+				$events = $DB->get_records_sql($sql);
+
+
+				$eventassign="'\\\block_iomad_company_admin\\\\event\\\user_license_assigned'";
+
+				$sqlassign="SELECT @s:=@s+1 n, ls.eventname,ls.userid,ls.timecreated, ls.courseid, ls.action, ls.other, ls.objectid, u.id as uid, u.username, u.firstname, u.lastname, u.email, u.country, u.phone2, c.id as compid, c.name as compname, (SELECT GROUP_CONCAT(DISTINCT d.name ) FROM mdl_department d LEFT JOIN mdl_company_users mcu on mcu.departmentid=d.id WHERE mcu.userid=ls.userid) as deptname, co.fullname, cl.name as licname, cl.expirydate FROM mdl_logstore_standard_log ls join mdl_user u on u.id = ls.userid left join mdl_company_users cu on ls.userid=cu.userid left join mdl_course as co on ls.courseid=co.id join mdl_company c on cu.companyid=c.id left join mdl_companylicense as cl on ls.objectid=cl.id, (SELECT @s:=0) n WHERE u.deleted=0 AND ls.eventname in ($eventassign) $eventdate $suspendedsql $courseearch GROUP BY ls.eventname, ls.userid, IF(ls.other IS NULL, ls.objectid,trim(BOTH '\"' FROM SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(ls.other, '{', -1), 'licenseid', -1),';',2),':',-1))) ORDER BY ls.timecreated DESC";
+
+				$eventsassign = $DB->get_records_sql($sqlassign);
+
+
+		            if(!empty($events) && !empty($eventsassign))
+		            {
+		            	$events=(object) array_merge((array) $events, (array) $eventsassign);
+		            }
+		            if(empty($events) && !empty($eventsassign))
+		            {
+		            	$events = $eventsassign;
+		            }
+      		}		
+        }
+			/*if(isset($params['download'])){
+				$events = $DB->get_records_sql($sql);
+			}
+			else{
+				$events = $DB->get_records_sql($sql,null, $page * $perpage, $perpage);	
+			}
+			$countevents = $DB->get_records_sql($sql);*/
+
+			
+			$numevents = count($events);
+			if($events){
+				$returnobj = new stdclass();
+				$returnobj->events = $events;
+				$returnobj->totalcount = $numevents;
+
+				return $returnobj;
+				
+			}
+			else{
+				$returnobj = new stdclass();
+				$returnobj->events = array();
+				$returnobj->totalcount = 0;
+
+				return $returnobj;
+			}
+	
+		 
+	 }
+ }
+class iomad_registration_filter_form extends moodleform {
+    protected $params = array();
+
+    public function __construct($params) {
+        $this->params = $params;
+        parent::__construct();
+    }
+
+    public function definition() {
+        global $CFG, $DB, $USER, $SESSION;
+
+        $mform =& $this->_form;
+      
+        foreach ($this->params as $param => $value) {
+            if ($param == 'datefrom' || $param == 'dateto') {
+                continue;
+            }
+            if($param == 'departmentid'){
+				$departmentid=$value;
+				$mform->addElement('hidden', $param, $value);
+				$mform->setType($param, PARAM_CLEAN);
+			}
+            if($param == 'username'){
+				$usernameids = $value;			
+			}
+			if($param == 'organization'){
+				$companyid = $value;			
+			}
+            if($param == 'subgroup'){
+				$subgroup = $value;			
+			}
+        }
+        foreach ($this->params as $param => $value) {
+            if ($param == 'datefrom' || $param == 'dateto' || $param == 'departmentid') {
+                continue;
+            }
+               $mform->setDefault($param, $value);
+
+        }
+        $countries = base::selectcountry();        
+		$courses =base::selectcourses($departmentid);
+        $userarray =base::selectusers($departmentid);	
+		$organization =base::selectorganization($departmentid);
+		$usernames =base::selectusernames($departmentid,array());
+		if(isset($companyid) && isset($subgroup)){
+			$subgroups=array('0'=>'Select Subgroup');
+			$companyids =explode(',',$companyid);
+
+			foreach($companyids as $key=>$value){	
+				if($value != '0'){
+					$comsubgroups =base::selectsubgroup($value);
+					foreach($comsubgroups as $key1=>$value1){
+						if($key1 != '0'){
+							$subgroups[$key1] = $value1;
+						}
+					}
+				}		
+			}
+			//$subgroups =base::selectsubgroup($companyid);
+		}
+		else
+			$subgroups =base::get_all_subgroup($departmentid);
+			
+		$eventtypes =report_registration::get_all_eventtype();
+		$licenses =report_registration::get_all_license($departmentid);
+		
+     	$mform->addElement('header', 'daterangefields', format_string(get_string('daterangeheader', 'local_base')));
+		$mform->setExpanded('daterangefields', true);
+
+		$dateranges =array('no'=>get_string('no', 'local_base'),'eventdate'=>get_string('eventdate', 'local_report_registration'));
+		$mform->addElement('select', 'daterange',  '<b>'.get_string('daterange', 'local_base').':</b>', $dateranges,'style="width: 40% !important;"');
+		$mform->addElement('date_selector', 'datefrom',  '<b>'. get_string('datefrom', 'local_base').':</b>');
+        $mform->addElement('date_selector', 'dateto',   '<b>'.get_string('dateto', 'local_base').':</b>');
+       $mform->setDefault('daterange', 'datecomp');
+       $mform->setDefault('datefrom', strtotime(date('Y-m-d', strtotime('today - 30 days'))));
+       
+		$mform->addElement('header', 'usersearchfields', format_string(get_string('filterheader', 'local_base')));
+		$mform->setExpanded('usersearchfields', false);
+		$mform->addElement('html', '<div class="active-label"><label><b>'.get_string('selectfilter', 'local_base').':</b></label></div>
+				  <div class="multiselect">
+					<div class="selectBox" onclick="showCheckboxes()">
+					  <select name="activesearch" id="activesearch">
+						<option>Select Filter(s)</option>
+					  </select>
+					  <div class="overSelect"></div>
+					</div>
+					<div id="checkboxes" class="usr-srch-field">
+					    <label for="checkactivestatus">
+						<input type="checkbox" id="checkactivestatus" data-target="#id_activestatus" />&nbsp;'.get_string('activestatus', 'local_base').'</label>
+					  	<label for="checkcountry">
+						<input type="checkbox" id="checkcountry"  data-target="#id_country" />&nbsp;'.get_string('country', 'local_base').'</label>
+				  	<!--<label for="checkcourse">
+						<input type="checkbox" id="checkcourse"  data-target="#id_deletedcourse,#id_coursego,#id_course" />&nbsp;'.get_string('course', 'local_base').'</label>-->
+				  		<label for="checkemail">
+						<input type="checkbox" id="checkemail" data-target="#id_email" />&nbsp;'.get_string('email', 'local_base').'</label>
+						 <label for="checkeventtype">
+						<input type="checkbox" id="checkeventtype" data-target="#id_eventtype" />&nbsp;'.get_string('eventtype', 'local_report_registration').'</label>
+					  	<label for="checklicense">
+						<input type="checkbox" id="checklicense"  data-target="#id_license" />&nbsp;'.get_string('license', 'local_base').'</label>
+					   	<label for="checkname">
+					  	<input type="checkbox" id="checkname" data-target="#id_firstname,#id_lastname" />&nbsp;'.get_string('name', 'local_base').'</label>
+					  	<label for="checkorganization">
+						<input type="checkbox" id="checkorganization"  data-target="#id_organization" />&nbsp;'.get_string('organization', 'local_base').'</label>
+						<label for="checksubgroup">
+						<input type="checkbox" id="checksubgroup"  data-target="#id_subgroup" />&nbsp;'.get_string('subgroup', 'local_base').'</label>
+					   	<label for="checkuser">
+						<input type="checkbox" id="checkuser" /data-target="#id_user" >&nbsp;'.get_string('user', 'local_base').'</label>
+					  	<label for="checkusername">
+						<input type="checkbox" id="checkusername" /data-target="#id_username" >&nbsp;'.get_string('username', 'local_base').'</label>
+					<!--	<label for="checkcoursedetail">
+						<input type="checkbox" id="checkcoursedetail" /data-target="#id_showcoursedata" >&nbsp;'.get_string('coursedetail', 'local_report_registration').'</label>-->					  
+					</div>
+				 </div> <button type="button" class="go-btn">'.get_string('go', 'local_base').'</button>
+				');
+	  
+		$mform->addElement('html', '<br><br><br>');
+		$mform->addElement('html', '<div class="filter-elements">');
+		$mform->addElement('select', 'user', '<b>'.get_string('user', 'local_base').':</b>', $userarray,'style="width: 40% !important;"');
+		if(isset($usernameids)){
+				$usernameids = explode(",",$usernameids);		
+		}
+		
+		$mform->addElement('html', '<div class="fitem" style="margin-bottom: 1.429rem;">');
+		$mform->addElement('html', '<div class="active-label"><label><b>'.get_string('username', 'local_base').':</b></label></div><div class="multiselect">');
+		$mform->addElement('html', ' <select id="id_username" name="username[]" data-placeholder="Choose a User Name..." class="chosen-select" multiple tabindex="40" style="width: 250px;" >');
+		$mform->addElement('html', ' <option value=""></option>');
+		
+		foreach($usernames as $key=>$value){
+			if(isset($usernameids)){
+				if(in_array($key,$usernameids))
+					$mform->addElement('html', ' <option value="'.$key.'" selected >'.$value.'</option>');
+				else
+					$mform->addElement('html', ' <option value="'.$key.'" >'.$value.'</option>');
+
+			}
+			else
+				$mform->addElement('html', ' <option value="'.$key.'">'.$value.'</option>');
+		}
+		          
+		$mform->addElement('html', ' </select></div></div>');
+
+
+		$select = $mform->addElement('select', 'course', '<b>'.get_string('course', 'local_base').':</b>', $courses,'style="width: 40% !important;"');
+		$select->setMultiple(true);
+		
+		$mform->addElement('text', 'firstname', '<b>'.get_string('firstname', 'local_base').':</b>','style="width: 40%;"');
+        $mform->addElement('text', 'lastname', '<b>'.get_string('lastname', 'local_base').':</b>','style="width: 40%;"');
+       		
+//       	$mform->addElement('select', 'organization','<b>'. get_string('organization', 'local_base').':</b>', $organization,'style="width: 40% !important;"');
+	        $select = $mform->addElement('select', 'organization', '<b>'.get_string('organization', 'local_base').':</b>', $organization,'style="width: 40% !important;"');
+		$select->setMultiple(true);
+
+		$select = $mform->addElement('select', 'subgroup', '<b>'.get_string('subgroup', 'local_base').':</b>', $subgroups,'style="width: 40% !important;"');
+		$select->setMultiple(true);
+		
+		$mform->addElement('select', 'eventtype','<b>'. get_string('eventtype', 'local_report_registration').':</b>', $eventtypes,'style="width: 40% !important;"');
+		$mform->addElement('select', 'license','<b>'. get_string('license', 'local_base').':</b>', $licenses,'style="width: 40% !important;"');
+
+		$activestatus= array('0'=>'Select Active Status','1'=>'Active','2'=>'Inactive');	
+		$mform->addElement('select', 'activestatus','<b>'. get_string('activestatus', 'local_base').':</b>', $activestatus,'style="width: 40% !important;"');
+	
+        $mform->addElement('text', 'email','<b>'. get_string('email', 'local_base').':</b>','style="width: 40%;"');
+		
+		$mform->addElement('select', 'country', '<b>'.get_string('country', 'local_base').':</b>', $countries,'style="width: 40% !important;"');
+		$mform->addElement('checkbox', 'showcoursedata', get_string('showcoursedata', 'local_report_registration'));
+		
+
+        $mform->setType('username', PARAM_RAW);
+        $mform->setType('firstname', PARAM_RAW);
+        $mform->setType('lastname', PARAM_RAW);
+        $mform->setType('email', PARAM_RAW);
+		$mform->addElement('html', '</div>');
+
+        $buttonarray=array();
+        $buttonarray[] = $mform->createElement('submit', 'submitbutton', get_string('updatefilters', 'local_base'));
+        $buttonarray[] = $mform->createElement('button', 'removefilter', get_string('removefilters', 'local_base'),array('class'=>'remove-btn'));
+		$mform->addGroup($buttonarray, 'buttonar', '', ' ', false);
+        $mform->closeHeaderBefore('buttonar');
+    }
+}

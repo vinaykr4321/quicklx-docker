@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/report_createkeys/db" VERSION="2018120300" COMMENT="XMLDB file for key generation"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="key_batches" COMMENT="keybatches instances">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="batch_setting_id" TYPE="int" LENGTH="11" NOTNULL="true" />
+        <FIELD NAME="keysvalue" TYPE="char" LENGTH="255" NOTNULL="true" />
+        <FIELD NAME="used_key" TYPE="int" LENGTH="11" NOTNULL="true" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for key generation"/>
+      </KEYS>
+    </TABLE>
+ 
+
+
+
+    <TABLE NAME="key_batch_settings" COMMENT="keybatches instances">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" />
+        <FIELD NAME="companyid" TYPE="char" LENGTH="255" NOTNULL="true" />
+        <FIELD NAME="keytype" TYPE="char" LENGTH="255" NOTNULL="true" />
+        <FIELD NAME="noofkeys" TYPE="int" LENGTH="11" NOTNULL="true" />
+        <FIELD NAME="expiry" TYPE="char" LENGTH="255" NOTNULL="true" />
+        <FIELD NAME="timecreated" TYPE="char" LENGTH="255" NOTNULL="true" />
+        <FIELD NAME="batch_status" TYPE="int" LENGTH="11" NOTNULL="true" />
+        <FIELD NAME="noof_batch_uses_allowed" TYPE="int" LENGTH="11" NOTNULL="true" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for key batch settings"/>
+      </KEYS>
+    </TABLE>
+
+
+   <TABLE NAME="key_batch_users" COMMENT="keybatches instances">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="key_batches_id" TYPE="int" LENGTH="11" NOTNULL="true" />
+        <FIELD NAME="status" TYPE="int" LENGTH="11" NOTNULL="true" />
+        <FIELD NAME="username" TYPE="char" LENGTH="255" NOTNULL="true" />
+        <FIELD NAME="userid" TYPE="int" LENGTH="11" NOTNULL="true" />
+        <FIELD NAME="used_at" TYPE="int" LENGTH="11" NOTNULL="true" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for key batch settings"/>
+      </KEYS>
+    </TABLE>
+
+    <TABLE NAME="key_batch_license" COMMENT="keybatches instances">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="key_batches_id" TYPE="int" LENGTH="11" NOTNULL="true" />
+        <FIELD NAME="licenseid" TYPE="int" LENGTH="20" NOTNULL="true" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for key batch settings"/>
+      </KEYS>
+    </TABLE>
+
+
+    
+  </TABLES>
+
+
+</XMLDB>

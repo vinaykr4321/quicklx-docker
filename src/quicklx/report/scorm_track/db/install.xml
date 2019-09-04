@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="report/scorm_track/db" VERSION="20130711" COMMENT="XMLDB file for Moodle"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+  <TABLES>
+    <TABLE NAME="report_scorm_download" COMMENT="Contains the data related to scorm tracking">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="false" SEQUENCE="true" NEXT="userid"/>
+        <!-- <FIELD NAME="userid" TYPE="int" LENGTH="10"  UNSIGNED="false" SEQUENCE="false" PREVIOUS="id" NEXT="sitelink"/> -->
+        <FIELD NAME="sitelink" TYPE="char" LENGTH="50" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="userid" NEXT="sitetitle"/>
+        <FIELD NAME="sitetitle" TYPE="char" LENGTH="50" UNSIGNED="false" SEQUENCE="false" PREVIOUS="sitelink" NEXT="courseid"/>
+        <!-- <FIELD NAME="courseid" TYPE="int" LENGTH="10"  UNSIGNED="false" SEQUENCE="false" PREVIOUS="sitelink" NEXT="privateip"/> -->
+        <FIELD NAME="privateip" TYPE="char" LENGTH="50" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="courseid" NEXT="publicip"/>
+        <FIELD NAME="publicip" TYPE="char" LENGTH="30" UNSIGNED="false" SEQUENCE="false" PREVIOUS="privateip" NEXT="timecreated"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="false" SEQUENCE="false" PREVIOUS="publicip" NEXT="timemodified"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" UNSIGNED="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="timecreated" NEXT="count"/>
+        <FIELD NAME="count" TYPE="int" LENGTH="10" UNSIGNED="false" DEFAULT="1" SEQUENCE="false" PREVIOUS="timemodified" />
+        
+        <FIELD NAME="coursename" TYPE="char" LENGTH="100" UNSIGNED="false" SEQUENCE="false" PREVIOUS="count" NEXT="company"/>
+        <FIELD NAME="company" TYPE="char" LENGTH="100" UNSIGNED="false" SEQUENCE="false" PREVIOUS="coursename"/>
+      </FIELDS>
+
+
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

@@ -1,0 +1,103 @@
+<div class="coursebox clearfix" data-courseid="{{courseid}}" data-type="1" style="width:100%;background:#fff;padding: 0px !important; ">
+    <div class="info" style="margin-bottom: 2%;">
+    <div class="h-200 col-md-3 rounded-top" style="float:left;background-image: url('{{ courseimage }}');background-size: cover;background-position: center;"></div>
+    <div class="col-md-6" style="float:left;">
+        <h3 class="coursename">
+            {{coursename}}
+            {{# coursesummary}}
+              <p class="card-text" style="font-weight: lighter;color: #a3afb7!important;padding-top: 10%;font-size: medium;" >{{{ coursesummary }}}</p>
+            {{/ coursesummary}}
+        </h3>
+        </div>
+        {{# library }}
+        <div class="pull-right col-md-3" style="margin:2%;background-color: #E7E7E7;padding: 7px 10px 48px 25px;;word-wrap: break-word;position: relative;width: 20%;color:#000000;">{{licensedSeats}}
+          <div class="moreinfo" style="position: absolute;margin: 0 auto;padding: 12px 0;">
+              <a data-toggle="modal" data-target="#myModal" class="" href="#" style="background-color:#62a8ea;color:#fff;padding:10px 30px;text-decoration:none;border-radius:5px; ">
+                      Add to Library
+                      </a>
+              {{# register }}
+                <a class="pull-right" href="#" style="background-color:#62a8ea;color:#fff;padding:10px 30px;text-decoration:none;border-radius:5px;text-align: center;margin-top: 15%;margin-right: 16%; width: 83%;" onClick=enrol({{courseid}},{{userid}},{{companyid}})>
+                  Register
+                </a>
+              {{/ register }}
+              {{# start }}
+                  <a class="pull-right" href="{{wwwroot}}/course/view.php?id={{courseid}}" style="background-color:#62a8ea;color:#fff;padding:10px 30px;text-decoration:none;border-radius:5px;text-align: center;margin-top: 15%;margin-right: 16%; width: 83%;">
+                    Start
+                  </a>
+              {{/ start }}
+        {{/ library }}
+
+        {{^ library }}
+          <div class="moreinfo">
+              {{# register }}
+                  <a class="" href="#" style="background-color:#62a8ea;color:#fff;padding:10px 30px;text-decoration:none;border-radius:5px; "onClick=enrol({{courseid}},{{userid}},{{companyid}})>
+                  Register
+                  </a>
+              {{/ register }}
+
+              {{# start }}
+                  <a class="" href="{{wwwroot}}/course/view.php?id={{courseid}}" style="background-color:#62a8ea;color:#fff;padding:11px 42px;text-decoration:none;border-radius:5px;">
+                  Start
+                  </a>
+              {{/ start }}
+
+              {{# continue }}
+                  <a class="" href="{{wwwroot}}/course/view.php?id={{courseid}}" style="background-color:#62a8ea;color:#fff;padding:11px 42px;text-decoration:none;border-radius:5px;">
+                  Continue
+                  </a>
+              {{/ continue }}
+          </div>
+        {{/ library }}
+
+
+        {{# library }}
+        </div>
+        {{/ library }}
+    </div>
+    <div class="content"></div>
+    {{# start }}
+        <h6>Registration Date: {{date}}</h6>
+    {{/ start }}
+</div>
+{{# library }}
+
+    {{# register }}
+        <div style="width: 100%;">
+          <a class="pull-right" href="#" style="background-color:#62a8ea;color:#fff;padding:10px 30px;text-decoration:none;border-radius:5px;margin-right: 3%;width: 15%;text-align: center;margin-bottom: 2%; "onClick=enrol({{courseid}},{{userid}},{{companyid}})>
+            Register
+          </a>
+        </div>
+    {{/ register }}
+    {{# start }}
+      <a class="" href="{{wwwroot}}/course/view.php?id={{courseid}}" style="background-color:#62a8ea;color:#fff;padding:10px 30px;text-decoration:none;border-radius:5px;margin-right: 3%;width: 15%;text-align: center;margin-bottom: 2%; ">
+        Start
+      </a>
+    {{/ start }}
+{{/ library }}
+
+
+
+
+
+<!--  Custom Modal Popup in moodle   -->
+
+     <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Message</h4>
+        </div>
+        <div class="modal-body">
+          <p>Get access instantly! Call 1-888-888-8888.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

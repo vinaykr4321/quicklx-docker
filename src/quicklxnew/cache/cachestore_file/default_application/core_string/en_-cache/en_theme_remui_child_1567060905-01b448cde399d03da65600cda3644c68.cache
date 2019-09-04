@@ -1,0 +1,75 @@
+a:17:{s:10:"pluginname";s:19:"Edwiser RemUI Child";s:16:"region-side-post";s:5:"Right";s:15:"region-side-pre";s:4:"Left";s:10:"fullscreen";s:11:"Full screen";s:15:"closefullscreen";s:17:"Close full screen";s:15:"licensesettings";s:16:"License Settings";s:29:"edwiserremuilicenseactivation";s:32:"Edwiser RemUI License Activation";s:8:"overview";s:8:"Overview";s:12:"choosereadme";s:3312:"
+<div class="about-remui-wrapper text-center">
+    <div class="about-remui m-auto" style="max-width: 1000px;">
+        <h1 class="text-center">Welcome To Edwiser RemUI</h1><br>
+        <h4 class="text-muted">
+        Edwiser RemUI is the new revolution in Moodle User Experience. It has been suitably designed
+        to elevate e-learning with custom layouts, simplified navigation, content creation & customization option. <br><br>
+        We're sure you will enjoy the remodeled look!
+        </h4>
+        <div class="text-center mt-50">
+        <img src="http://localhost:8000/quicklx/theme/remui/pix/screenshot.jpg" alt="Edwiser RemUI screen shot" style="max-width: 100%;"/>
+        </div>
+        <br><br>
+        <div class="text-center">
+            <div class="btn-group text-center" role="group" aria-label="...">
+              <div class="btn-group mr-1" role="group">
+                <a href="https://edwiser.org/remui/faq/" target="_blank" class="btn btn-primary btn-round">FAQ</a>
+              </div>
+              <div class="btn-group mr-1" role="group">
+                <a href="https://edwiser.org/remui/documentation/" target="_blank" class="btn btn-primary btn-round">Documentation</a>
+              </div>
+              <div class="btn-group" role="group">
+                <a href="https://edwiser.org/contact-us/" target="_blank" class="btn btn-primary btn-round">Support</a>
+              </div>
+            </div>
+        </div>
+        <br>
+        <h1 class="text-center">Personalize Your Theme</h1>
+        <h4 class="text-muted text-center">
+            We understand that not every LMS is the same. We'll work with you to understand your needs, and design and develop a solution to meet your goals.
+        </h4>
+        <br><br>
+        <div class="row wdm_generalbox">
+            <div class="marketing-spots span3 col-lg-6 col-12">
+                <div class="iconsquare">
+                    <i class="fa fa-cogs"></i>
+                </div>
+                <div class="iconbox-content">
+                    <h4>Theme Customization</h4>
+                </div>
+            </div>
+            <div class="marketing-spots span3 col-lg-6 col-12">
+                <div class="iconsquare">
+                    <i class="fa fa-edit"></i>
+                </div>
+                <div class="iconbox-content">
+                    <h4>Functionality Development</h4>
+                </div>
+            </div>
+            <br>
+            <div class="marketing-spots span3 col-lg-6 col-12">
+                <div class="iconsquare">
+                    <i class="fa fa-link"></i>
+                </div>
+                <div class="iconbox-content">
+                    <h4>API Integration</h4>
+                </div>
+            </div>
+            <div class="marketing-spots span3 col-lg-6 col-12">
+                <div class="iconsquare">
+                    <i class="fa fa-life-ring"></i>
+                </div>
+                <div class="iconbox-content">
+                    <h4>LMS Consultancy</h4>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="text-center">
+            <a class="btn btn-primary btn-lg" target="_blank" href="https://edwiser.org/contact-us/">Contact Us</a>&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<br />";s:9:"nolicense";s:28:"You have no seats available.";s:11:"lesslicense";s:47:"You have fewer than 10 license seats remaining.";s:17:"numberseatlicense";s:38:"You have {$a} license seats remaining.";s:16:"unlimitedlicense";s:28:"You have unlimited licenses.";s:12:"licensed_asc";s:13:"Licensed, A-Z";s:13:"licensed_desc";s:13:"Licensed, Z-A";s:13:"licensed_high";s:21:"Licensed, High to Low";s:12:"licensed_low";s:21:"Licensed, Low to High";}

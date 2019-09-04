@@ -1,0 +1,228 @@
+<div class="coursebox clearfix custom_course" data-courseid="{{courseid}}" data-type="1">
+    <div class="info">
+    <div class="col-md-3 h-200 pull-left rounded-top course_img" style="background-image: url('{{ courseimage }}');"></div>
+    
+
+    <!-- div class="col-md-3 pull-left">
+        <div class="h-200 col-md-3 rounded-top course_img" style="background-image: url('{{ courseimage }}');">
+        </div>
+    </div -->
+
+        <div class="col-md-6 pull-left">
+            <h3 class="coursename">
+                <div class="tooltipc">
+                   <span class="tooltiptextc">
+                        This course is part of a license which includes access to the following courses :<br>
+                        {{# licencecoursepopup}}
+                            <b>&bull;</b> {{licencename}} : {{{.}}}<br>
+                        {{/ licencecoursepopup}}
+                   </span>
+                   {{coursename}}
+                </div>
+                {{# coursesummary}}
+                    <p class="card-text course_summary_p" >{{{ coursesummary }}}</p>
+                {{/ coursesummary}}
+            </h3>
+         {{# date }}
+         <h6>Registration Date: {{date}}</h6>
+         {{/ date }}
+         {{# timeend }}
+         <h6>Expiration Date: {{timeend}} </h6>
+         {{/ timeend }}
+        </div>
+        {{# library }}
+        <div class="col-md-3 pull-left padding_1">
+            <div class="row licensed_seat">
+                <div class="pull-right" >{{licensedSeats}}</div>
+                <a data-toggle="modal" data-target="#myModal" class="add_to_lib_button " href="#" >Add License Seats</a>
+            </div>
+            <div class="row new_licensed_seat" >
+                {{# lregister }}
+                <div class="col-md-12 col-sm-12 margin_15_px" align="center">
+                <a data-toggle="modal" data-target="#myModalRegister{{courseid}}" class="admin_button reg_btn {{courseid}}" href="#">Register</a>
+                </div>
+
+                <!--  Register Button Popup   -->
+                <div class="modal fade" id="myModalRegister{{courseid}}" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Course Registration</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Click "Register" to confirm your registration. This course is part of a license which includes access to all the following courses:</p>
+                            {{# licencecoursepopup}}
+                                <b>&bull;</b> {{licencename}} : {{{.}}}<br>
+                            {{/ licencecoursepopup}}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" onClick=enrol({{courseid}},{{userid}},{{companyid}}) class="btn btn-primary" data-dismiss="modal" >Register</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                      </div>
+                    </div>
+                </div>
+
+
+                {{/ lregister }}
+
+                {{# lstart }}
+                <div class="col-md-12 col-sm-12 margin_15_px" align="center">
+                    {{#accessexpired}}
+                        <a class="admin_button access_btn {{courseid}}" >
+                            Access Denied
+                        </a>
+                    {{/ accessexpired}}
+                    {{^ accessexpired}}
+                        <a class="admin_button start_btn {{courseid}}" href="{{courseurl}}" >
+                            Start
+                        </a>
+                    {{/ accessexpired}}
+                </div>
+                {{/ lstart }}
+
+                {{# lcontinue }}
+                <div class="col-md-12 col-sm-12 margin_15_px" align="center">
+                    {{#accessexpired}}
+                        <a class="admin_button access_btn {{courseid}}" >
+                            Access Denied
+                        </a>
+                    {{/ accessexpired}}
+                    {{^ accessexpired}}
+                        <a class="admin_button cont_btn {{courseid}}" href="{{courseurl}}" >
+                            Continue
+                        </a>
+                    {{/ accessexpired}}
+                </div>
+                {{/ lcontinue }}
+
+                {{# review }}
+                <div class="col-md-12 col-sm-12 margin_15_px" align="center">
+                    <a class=" admin_button review_btn {{courseid}}" href="{{courseurl}}" >Review</a>
+                </div>
+
+                <ul class="remove_bullet">
+                   <li class="pull-right">
+                      {{# certificatelink}}
+                            <a class="underline" href="{{certificatelink}}" >
+                                Get Course Certificate
+                            </a>
+                        {{/ certificatelink}}
+                        {{^ certificatelink}}
+                            Completed
+                        {{/ certificatelink}}
+                   </li>
+                </ul>
+                {{/ review }}
+            </div>
+        </div>
+        {{/ library }}
+      {{^ library }}
+      <div class="pull-right student_main_div student_reg">
+         <div {{^ review }} class="margin_top_30" {{/ review }}>
+         {{# register }}
+         <ul class="remove_bullet">
+            <li>   
+                <a data-toggle="modal" data-target="#myModalRegister{{courseid}}" class="student_button student_register_button {{courseid}}" href="#">Register</a>
+            </li>
+         </ul>
+         <!--  Register Button Popup   -->
+         <div class="modal fade" id="myModalRegister{{courseid}}" role="dialog">
+            <div class="modal-dialog">
+               <!-- Modal content-->
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">Course Registration</h4>
+                  </div>
+                  <div class="modal-body">
+                     <p>Click "Register" to confirm your registration. This course is part of a license which includes access to the following courses:</p>
+                     {{# licencecoursepopup}}
+                     <b>&bull;</b> {{licencename}} : {{{.}}}<br>
+                     {{/ licencecoursepopup}}
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" onClick=enrol({{courseid}},{{userid}},{{companyid}}) class="btn btn-primary" data-dismiss="modal" >Register</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         {{/ register }}
+         {{# start }}
+         <ul class="remove_bullet">
+            <li>   
+                {{#accessexpired}}
+                    <a class="student_button student_access_button {{courseid}}" >
+                        Access Denied
+                    </a>
+                {{/ accessexpired}}
+                {{^ accessexpired}}
+                    <a class="student_button student_start_button {{courseid}}" href="{{courseurl}}" >
+                        Start
+                    </a>
+                {{/ accessexpired}}
+            </li>
+         </ul>
+         {{/ start }}
+         {{# continue }}
+         <ul class="remove_bullet">
+            <li>
+                {{#accessexpired}}
+                    <a class="student_button student_access_button {{courseid}}" >
+                        Access Denied
+                    </a>
+                {{/ accessexpired}}
+                {{^ accessexpired}}
+                    <a class="student_button student_continue_button {{courseid}}" href="{{courseurl}}" >
+                        Continue
+                    </a>
+                {{/ accessexpired}}
+            </li>
+         </ul>
+         {{/ continue }}
+         {{# review }}
+         <a class="student_button pull-right student_review_button {{courseid}}" href="{{courseurl}}" >
+         Review
+         </a>
+         <ul class="remove_bullet">
+            <li class="margin_top_10 pull-right">
+                {{# certificatelink}}
+                    <a class="underline" href="{{certificatelink}}" >
+                        Get Course Certificate
+                    </a>
+                {{/ certificatelink}}
+                {{^ certificatelink}}
+                    Completed
+                {{/ certificatelink}}
+            </li>
+         </ul>
+         {{/ review }}
+      </div>
+   </div>
+   {{/ library }}
+</div>
+</div>  
+
+
+<!--  Custom Modal Popup in moodle   -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add License Seats</h4>
+         </div>
+         <div class="modal-body">
+            <p>{{addlicenseseatmessage}}</p>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+         </div>
+      </div>
+   </div>
+</div>

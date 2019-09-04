@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  web:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    container_name: compphp01
+    depends_on:
+      - db              
+    environment: 
+      HTTP_HOST: localhost
+      GIT_USER: smasih
+      GIT_PW: "sunday1234567890"
+    volumes:
+      - ./src/quicklx:/var/www/html/quicklx
+      - ./src/code:/var/www/html/
+    ports:
+      - 8001:80
+    tty: true
+  db:
+    container_name: compmysql01
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes: 
+      - ./src/mysql-dump:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: quicklxnew
+      MYSQL_USER: dokuser
+      MYSQL_PASSWORD: dokpass
+    ports:
+      - 3307:3306

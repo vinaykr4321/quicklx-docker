@@ -1,0 +1,22 @@
+#selectperpagenew{
+	float:right;
+	margin-top: -6%;
+}
+#iomad_company_selector_new{
+	/*position: absolute;*/
+}
+.generaltable{
+	font-size: 11px;
+}
+.margin_top_2{
+	margin-top: 2%;
+}
+.singleselect{
+	min-width:0 !important;
+}
+.custom-select {
+    width: auto !important;
+}
+.width-75{
+	width: 75%;
+}

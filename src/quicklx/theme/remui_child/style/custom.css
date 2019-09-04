@@ -1,0 +1,698 @@
+.path-blocks-iomad_company_admin .page-header{ 
+ margin-top:70px !important;
+}
+
+
+.license-nag{
+    display:none;
+}
+
+
+
+/*------------------------------ Hide dashboard icons, graphs, right side menu, user preference menu items, footer, etc...  ------------------------*/
+
+
+#page-my-index #stats,#page-local-iomad-dashboard-index #stats,#page-my-index ul.blocks-sm-100,#page-local-iomad-dashboard-index ul.blocks-sm-100, #page-my-index #quiz-overview, #page-local-iomad-dashboard-index #quiz-overview, #nav-message-popover-container, #nav-notification-popover-container, a[data-key*="competencies"], a[title*="Competencies"], a[title*="Commerce"], a[href*="message/index.php"], #page-user-preferences a[href*="user/language"], #page-user-preferences a[href*="user/forum"], #page-user-preferences a[href*="user/editor"], #page-user-preferences a[href*="user/course"],#page-user-preferences a[href*="user/calendar"], #page-user-preferences a[href*="message/edit"], #page-user-preferences a[href*="message/notificationpreferences"], #action-menu-2-menu a[href*="user/language"], #action-menu-2-menu a[href*="user/forum"], #action-menu-2-menu a[href*="user/editor"], #action-menu-2-menu a[href*="user/course"],#action-menu-2-menu a[href*="user/calendar"], #action-menu-2-menu a[href*="message/edit"], #action-menu-2-menu a[href*="message/notificationpreferences"], #page-user-profile a[href="#userprefs"] , .page-aside.d-0, .page-aside-switch-lg.hidden-md-down, #toggleChat, .site-menu-toggle, .site-menubar-footer, .site-footer, .grid_btn, .list_btn, section[data-block*="iomad_reports"] {
+    display: none !important;
+}
+
+#page-my-index .card-text, #page-local-iomad-dashboard-index .card-text{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.page-main {
+    margin-right: 0px !important;
+}
+
+
+/*-------------------------------  Dashboard logo adjustments and icon background  -----------------------------------*/
+
+.navbar-brand-logo img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+#page-local-iomad-dashboard-index .iomadlink_container .iomadlink .iomadicon, .iomadlink_container .iomadlinkreports .iomadicon {
+  margin-top:35px;
+}
+
+
+#page-local-iomad-dashboard-index div.iomadlink, #page-local-iomad-dashboard-index div.iomadlinkreports {
+    line-height: 120%;
+    min-height: 130px;
+    /*Custom code - Syllametrics - use logo background color*/
+    /*background-color: #d2ff70;*/
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+
+#page-local-iomad-dashboard-index div.iomadlink .actiondescription, #page-local-iomad-dashboard-index div.iomadlinkreports .actiondescription{
+    color:#1177d1;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+
+
+.fitem>.singleselect{
+   width: 60%;
+   min-width: 140px !important;
+   margin-bottom: 20px;
+   padding-left: 2px;
+}
+
+
+/*--------------------------------------  Hide Assign Course block (Iomad -> create user)   --------------------------------------------------*/
+
+
+#page-blocks-iomad_company_admin-company_user_create_form #id_courses{
+    display: none;
+}
+
+
+
+/*--------------------------------------  Custom course display (Course/index.php)   --------------------------------------------------*/
+
+.custom_course{
+    border: 5px solid #eaeaea;
+    width:100%;
+    background:#fff;
+    padding: 0px !important;
+    margin-bottom:2%;
+}
+
+.course_img{
+    background-repeat: no-repeat;
+    float: left;
+    background-size: 100% 100%;
+    background-position: left;
+}
+
+@media (min-width: 768px) {
+    .course_img {
+        max-width: 260px;
+    }
+}
+
+
+
+.course_summary_p{
+    font-weight: lighter;
+    color: #a3afb7!important;
+    padding-top: 1%;
+    font-size: medium;
+}
+
+.licensed_seat{
+    margin:1% 1% 0 1%;
+    background-color: #E7E7E7;
+    padding: 10px 10px 10px 15px;
+    word-wrap: break-word;
+    position: relative;
+    color:#000000;
+}
+.new_licensed_seat{
+    margin:0 1% 1% 1%;
+    background-color: #E7E7E7;
+    padding-bottom: 2%;
+    color:#000000;
+}
+
+.padding_1{
+    padding: 1%;
+}
+
+.margin_15_px{
+    margin: 15px;
+}
+
+.moreinfo_custom{
+    position: absolute;
+    margin: 0 auto;
+    padding: 12px 0 !important;
+}
+
+.add_to_lib_button, .add_to_lib_button a:hover{
+    background-color:#62a8ea;
+    color:#fff !important;
+    padding:10px 20px;
+    text-decoration:none !important;
+    border-radius:5px; 
+    margin: auto;
+    margin-top: 5px;
+}
+
+.admin_button,.admin_button a:hover{
+    background-color:#62a8ea;
+    color:#fff !important;
+    text-decoration:none !important;
+    border-radius:5px;
+    text-align: center;
+    /*margin-top: 5%;*/
+    /*margin-left: 25%;*/
+    /*margin-right: 11%; 
+    width: 89%;*/
+}
+.start_btn,.start_btn a:hover{
+    padding:10px 63px;
+    margin-left: 2%;
+}
+
+.review_btn,.review_btn a:hover{
+    padding:10px 56px;
+    margin-left: 2%;
+}
+
+.access_btn,.access_btn a:hover{
+    padding: 10px 30px;
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+.cont_btn,.cont_btn a:hover{
+    
+    padding:10px 50px;
+    margin-left: 2%;
+}
+
+.reg_btn,.reg_btn a:hover{
+    padding:10px 52px;
+    margin-left: 2%;
+}
+
+.student_main_div{
+    margin:2.5%;
+}
+
+.student_button,.student_button a:hover{
+    background-color:#62a8ea;
+    color:#fff !important;
+    text-decoration:none !important;
+    border-radius:5px;
+}
+
+.student_register_button{
+    padding:10px 30px;
+}
+
+.student_start_button{
+    padding:10px 43px;
+}
+
+.student_continue_button{
+    padding:10px 30px;
+}
+
+.student_access_button{
+    padding:10px 9px;
+    margin-bottom:10px;
+    cursor: pointer;
+    background-color: darkgray;
+}
+
+.student_review_button{
+    padding:10px 36px;
+}
+
+.margin_left_10{
+    margin-left: 10%;
+}
+.margin_top_10{
+    margin-top: 10%;
+}
+
+
+.margin_top_30{
+    margin-top: 30%;
+}
+
+.underline{
+    text-decoration: underline;
+}
+.remove_bullet{
+    list-style: none;
+}
+
+.custom_a{
+    width: 200px;
+    position: absolute;
+    bottom: -15px;
+    left: -10px
+}
+
+
+/**************************  Course Title Tooltip Catalog  *********************************************/
+.tooltipc {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltipc .tooltiptextc {
+    visibility: hidden;
+    width: auto;
+    background-color: white;
+    color: #000;
+    /*text-align: center;*/
+    border-radius: 6px;
+    border: 1px solid black;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 9999;
+    font-size: 12px;
+    bottom: 50px;
+    float: left;
+    min-width: 500px;
+    line-height: 2;
+    padding-left: 4%;
+
+
+
+}
+
+/* V1.0: Hidden */
+/*.tooltipc:hover .tooltiptextc {
+    visibility: visible;
+}*/
+
+.lastcol > .btn-primary{
+    color: #fff !important;
+    transition: all 0.3 ease;
+}
+.lastcol > .btn-primary:hover{
+    color: #fff !important;
+    background-color: #89bceb !important; /*change it with #62A8EA if you want the dark blue on hover*/
+}
+
+#page-blocks-iomad_company_admin-company_license_edit_form  .btn-cancel .btn-secondary{
+    margin-top: 20%;
+}
+
+.generaltable:hover .btn-primary {color: #fff !important;}
+
+/**********************  Fix alert layout - Rem/IOMAD conflict  *********************/
+.loginerrors .alert {
+   margin-bottom: 5rem !important;
+}
+.alert-dismissible {
+   padding-left: 45px !important;
+}
+
+/*************** Fix SCORM top and side white space ***********/
+#page-mod-scorm-player {
+ padding-top: 0px !important;
+}
+#page-mod-scorm-player #scormpage #scorm_object {
+    width: 100% !important;
+    height: 100% !important;
+}
+#page-mod-scorm-player .panel-body {
+    padding: 0px 0px !important;
+}
+#page-mod-scorm-player .panel-body .region_main_settings_menu_proxy {
+    height: 0px !important;
+}
+
+/*************** Hide IOMAD User Enrolment, Optional Profiles, Create Course feature buttons ***************/
+.iomadlink_container a[href*="company_course_users_form"], .iomadlink_container a[href*="company_user_profiles"], .iomadlink_container a[href*="company_course_create_form"] {
+   display: none;
+}
+
+
+
+
+
+@media (min-width: 768px)
+{
+
+    .student_reg{
+        /**margin-top: 8%;**/
+        margin-top: 0%;
+ 	margin-bottom: 0px !important;
+    }
+    
+}
+
+@media screen and  (max-width: 992px)
+{
+    .start_btn, .start_btn a:hover {
+        padding: 4% 23%;
+    }
+
+    .cont_btn, .cont_btn a:hover {
+        padding: 4% 19%;
+    }
+
+    .reg_btn, .reg_btn a:hover {
+        padding: 4% 19%;
+    }
+    .review_btn,.review_btn a:hover{
+        padding: 4% 21%;
+    }
+    .access_btn,.access_btn a:hover{
+        padding: 8% 6%;
+        background-color: darkgray;
+        cursor: pointer;
+    }
+    .loader_text{
+    margin-top: 100%;
+    color:#ffffff;
+    text-align: center;
+    font-weight: bold;
+    }
+    #page-my-index .slick-dots{
+        display: none;
+    }
+    .dropdown-menu-right {
+        right: auto !important;
+    }
+    
+        /* Dashboard course view */
+    .course-scroll
+    {
+        width: 43% !important;
+        margin-bottom: 15% !important;
+    }
+    
+    .height-course-footer
+    {
+        height: auto !important;
+        min-height:80px !important;
+    }
+
+
+    
+}
+
+/* Dashboard Tab styling change*/
+/*#page-local-iomad-dashboard-index .iomadlink,#page-local-iomad-dashboard-index .iomadlinkreports{
+    background-color: #62a8eb !important;
+}*/
+#page-local-iomad-dashboard-index .fa-topic,#page-local-iomad-dashboard-index .actiondescription{
+    color: #fff !important;
+}
+#page-local-iomad-dashboard-index .fa-action{
+    background-color: #000 !important;
+}
+
+.selected{
+    background-color:#7099CC;
+    color:#fff;
+}
+
+.normal{
+    background-color:#fff;
+    color :#76838f;
+}
+.marginclass{
+    margin: 1% 1% 2% 0;
+}
+
+#page-login-forgot_password ul.site-menu, #page-login-forgot_password ul.navbar-toolbar-right li:nth-child(2),#page-login-forgot_password #page-header {
+    display: none;
+}
+
+div#courses-view-future, div#courses-view-past, div#courses-view-in-progress {
+   padding-bottom: 30px !important;
+}
+
+
+
+
+/* Select an installed theme hide css  */
+
+#page-blocks-iomad_company_admin-company_edit_form select#id_theme , #page-blocks-iomad_company_admin-company_edit_form #id_appearance .fcontainer  p {
+    display: none;
+}
+#page-blocks-iomad_company_admin-company_edit_form #id_appearance .fcontainer .form-group:nth-child(1){
+    display: none;
+
+}
+
+/* Empty the existing splash image */
+/*.page-login-v2:before {
+    background-image: url();
+}*/
+
+/* Hide css in Profile page */
+#page-user-profile .profile-job, #page-user-profile .profile-social, #page-user-profile .card-footer{
+display: none;
+}
+
+/* Hide css in course/view.php*/
+#page-course-view-topics #completionprogressid, #page-course-view-topics .course-cover-image{
+    display: none;
+}
+
+/* Hide css in user profile*/
+#page-blocks-iomad_company_admin-editadvanced #id_moodle_additional_names, #page-blocks-iomad_company_admin-editadvanced #id_moodle_interests, #page-blocks-iomad_company_admin-editadvanced #id_moodle_optional{
+    display: none;
+}
+
+
+/* Change color in edit user  */
+.dep_tree {
+    padding: 20px;
+    background-color: #ececec !important;
+    border: none !important; 
+    border-radius: 5px;
+    margin-bottom: 2%;
+}
+
+
+/* side bar active colour */
+.site-menu>.site-menu-item.active{
+    background: none !important;
+}
+
+
+/*Hide  "Switch to the standard theme" link*/
+#theme_switch_link{
+    display: none;
+}
+
+/*Hide header in forget password page*/  
+#page-login-forgot_password #page-header{
+    display: none !important;
+}
+
+#page-report-usersreport-index .no-overflow {
+    overflow: visible;
+}
+
+.blocks, [class*=blocks-] {
+    margin-left: 0px !important;
+}
+
+/*Hide assign licenses in company_user_create_form.php  */ 
+
+#page-blocks-iomad_company_admin-company_user_create_form #licensedetails ,#page-blocks-iomad_company_admin-company_user_create_form #licensecoursescontainer{
+    display: none !important;
+        position: absolute;
+        z-index: -1;
+}
+
+/*Change user-userreport table font size*/
+#page-report-usersreport-index table.generaltable {
+    font-size: 1rem !important;
+}
+
+
+.loginlogo { 
+    margin-top: 100px;
+    background-image: url([[pix:theme|logo]]);
+    background-position: 25px 25px;
+    background-repeat: no-repeat;
+}
+
+.page-login-v2.page-dark.layout-full:after {
+    background-color: transparent !important;
+}
+
+
+/* TO hide player.php header & left navigation , To open a scorm video in new tab */
+
+#page-mod-scorm-player header, #page-mod-scorm-player .site-menubar, #page-mod-scorm-player nav, #page-mod-scorm-player #region-main-settings-menu,
+#page-mod-scorm-player .pad{
+    display: none;
+}
+
+#page-mod-scorm-player div.page,#page-mod-scorm-player div.page-content{
+    padding: 0 !important;
+    margin: 0 !important;    
+    background: none !important;
+    
+}
+
+#page-mod-scorm-player div.container{
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+div#loading_mycourses{
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    background-image: url(http://loadinggif.com/images/image-selection/3.gif);
+    background-color: #000000;
+    opacity: 0.7;
+    background-repeat: no-repeat;
+    background-position: center;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+}
+.loader_text{
+    margin-top: 37%;
+    color:#ffffff;
+    text-align: center;
+    font-weight: bold;
+}
+
+#page-report-scorm_track-index td.c1,#page-report-scorm_track-index td.c5,#page-report-scorm_track-index td.c6{
+    width: 10%;
+    word-break: break-all;
+}
+
+
+/* Space between instruction and form */
+
+#page-login-forgot_password .mform{
+    padding-top: 2%;
+}
+
+/* css for scorm track report */
+#page-report-scorm_track-index .showperpageclass {
+    margin-top: 0px !important;
+    margin-bottom: 10px;
+}
+
+.btn-primary{
+    color: #fff !important;
+}
+
+
+/* Dashboard course view */
+.course-scroll{
+    width: 230px;
+    margin-bottom: 3%;
+}
+
+
+.height-course-footer
+{
+    height: 55px;
+}
+
+#page-blocks-iomad_company_admin-company_license_users_form input#addall {
+    display: none;
+}
+#page-blocks-iomad_company_admin-company_license_users_form input#removeall {
+    display: none;
+}
+
+/* Removed hand cusor from logo */
+.navbar-brand{
+    cursor: default !important;
+}
+
+/* Hide profile start date text */
+#page-user-profile #usercourses small {
+   display:none;
+}
+
+.button_space
+{
+margin-top: 5px;
+}
+
+.student_main_div {
+   margin: 0% !important;
+  
+}
+.student_main_div_margin{
+   margin-right: 10px !important;
+}
+
+@media screen and  (min-width: 600px)
+{
+.right-bottom{
+position: absolute;
+bottom: 10%;
+right: 10%;
+}
+
+}
+.grid-padding{
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.mid_button_set{
+margin-top:10px;
+}
+
+
+.h-200 {
+    height: 250px !important;
+}
+
+.h-170 {
+    height: 170px !important;
+}
+
+@media (min-width: 768px) {
+    .h-170 {
+        height: 100% !important;
+        min-height: 170px;
+    }
+}
+
+@media only screen and (max-width: 760px) and (min-width: 425px) {
+.col-sm-3 {
+    width: 100% !important;
+}
+
+}
+
+
+
+
+.darkbrown{
+    background-color: darkgray;
+    color:#ffffff !important;
+}
+
+.overflowbuttontext{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.backgroundcolors{
+    padding: 30px;
+    background-color: #E7E7E7;
+}
+.fullwidth{
+    width:100%;
+}
+
+.btnbtm{
+    float:left !important;
+}
+
+.btnbtmspace{
+    padding-bottom: 4em;
+}
+
+#page-login-signup.site-menubar-fold .site-menubar {
+    display: none !important;
+}
+#page-login-signup.site-menubar-fold .page, .site-menubar-fold .site-footer {
+    margin-left: 0px !important;
+}
+#page-login-signup .navbar-toggler.hamburger {
+    display: none;
+}

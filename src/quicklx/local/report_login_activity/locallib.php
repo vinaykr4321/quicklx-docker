@@ -1,0 +1,196 @@
+<?php
+
+/**
+ *  Filter form used on the report .
+ *
+ */
+require_once($CFG->dirroot . '/local/base/locallib.php');
+
+class report_login_activity {
+
+    public static function get_users_login($departmentid, $params) {
+        global $DB;
+
+
+        if (isset($params['daterange']) && $params['daterange'] == 'no') {
+            unset($params['datefrom']);
+            unset($params['dateto']);
+        }
+        if (isset($params['departmentid'])) {
+            $departmentid = $params['departmentid'];
+            $alldepartments = company::get_all_subdepartments($departmentid);
+        }
+
+        if (isset($params['organization']) && $params['organization'] != "0") {
+            $organizations = explode(",", $params['organization']);
+            $alldepartments = array();
+            foreach ($organizations as $key => $value) {
+                $companyid = $value;
+                $department = $DB->get_record('department', array('parent' => 0, 'company' => $companyid));
+                $departmentid = $department->id;
+                $orgdepartments = company::get_all_subdepartments($departmentid);
+                foreach ($orgdepartments as $key => $value) {
+                    $alldepartments[$key] = $value;
+                }
+            }
+        }
+
+        if (count($alldepartments) > 0) {
+
+            $departmentids = implode(',', array_keys($alldepartments));
+
+            if (isset($params['subgroup']) && $params['subgroup'] != "0") {
+                $departmentids = $params['subgroup'];
+            }
+
+            if (isset($params['user']))
+                $userfilter = " AND l.userid=" . $params['user'];
+            else
+                $userfilter = '';
+
+            $searchsessionfrom = " ";
+            if ($params['daterange'] != 'no') {
+                $beginOfDay = strtotime("midnight", $params['datefrom']);
+                $endOfDay = strtotime("tomorrow", $params['dateto']) - 1;
+                $searchsessionfrom = " AND l.timecreated > $beginOfDay AND  l.timecreated < $endOfDay";
+            }
+            $sql = "select DISTINCT l.* from {logstore_standard_log} l
+								JOIN {company_users} cu ON (l.userid = cu.userid)
+								where cu.departmentid IN ($departmentids) AND action in ('loggedin','loggedout') 
+								 $searchsessionfrom $userfilter
+								ORDER BY l.userid,l.timecreated ASC";
+            $usersessions = $DB->get_records_sql($sql);
+
+            $returnarr = array();
+            if ($usersessions) {
+                $returnobj = new stdclass();
+                $returnobj->users = $usersessions;
+                $returnobj->totalcount = count($usersessions);
+                return $returnobj;
+            } else {
+                $returnobj = new stdclass();
+                $returnobj->users = array();
+                $returnobj->totalcount = 0;
+
+                return $returnobj;
+            }
+        }
+    }
+
+}
+
+class iomad_login_activity_filter_form extends moodleform {
+
+    protected $params = array();
+
+    public function __construct($params) {
+        $this->params = $params;
+        parent::__construct();
+    }
+
+    public function definition() {
+        global $CFG, $DB, $USER, $SESSION;
+
+        $mform = & $this->_form;
+
+        foreach ($this->params as $param => $value) {
+            if ($param == 'datefrom' || $param == 'dateto') {
+                continue;
+            }
+            if ($param == 'departmentid') {
+                $departmentid = $value;
+                $mform->addElement('hidden', $param, $value);
+                $mform->setType($param, PARAM_CLEAN);
+            }
+            if ($param == 'organization') {
+                $companyid = $value;
+            }
+            if ($param == 'subgroup') {
+                $subgroup = $value;
+            }
+        }
+        foreach ($this->params as $param => $value) {
+            if ($param == 'datefrom' || $param == 'dateto' || $param == 'departmentid') {
+                continue;
+            }
+            $mform->setDefault($param, $value);
+        }
+        $userarray = base::selectusers($departmentid);
+        $organization = base::selectorganization($departmentid);
+
+        if (isset($companyid) && isset($subgroup)) {
+            $subgroups = array('0' => 'Select Subgroup');
+            $companyids = explode(',', $companyid);
+
+            foreach ($companyids as $key => $value) {
+                if ($value != '0') {
+                    $comsubgroups = base::selectsubgroup($value);
+                    foreach ($comsubgroups as $key1 => $value1) {
+                        if ($key1 != '0') {
+                            $subgroups[$key1] = $value1;
+                        }
+                    }
+                }
+            }
+            //$subgroups =base::selectsubgroup($companyid);
+        } else
+            $subgroups = base::get_all_subgroup($departmentid);
+
+
+        $mform->addElement('header', 'daterangefields', format_string(get_string('daterangeheader', 'local_base')));
+        $mform->setExpanded('daterangefields', true);
+        $dateranges = array('no' => get_string('no', 'local_base'), 'sessionstart' => get_string('sessionstart', 'local_base'));
+        $mform->addElement('select', 'daterange', '<b>' . get_string('daterange', 'local_base') . ':</b>', $dateranges, 'style="width: 40% !important;"');
+
+
+        $mform->addElement('date_selector', 'datefrom', '<b>' . get_string('datefrom', 'local_base') . ':</b>');
+        $mform->addElement('date_selector', 'dateto', '<b>' . get_string('dateto', 'local_base') . ':</b>');
+
+
+        $mform->setDefault('daterange', 'datecomp');
+        $mform->setDefault('datefrom', strtotime(date('Y-m-d', strtotime('today - 30 days'))));
+
+        $mform->addElement('header', 'usersearchfields', format_string(get_string('filterheader', 'local_base')));
+        $mform->setExpanded('usersearchfields', false);
+        $mform->addElement('html', '<div class="active-label"><label><b>' . get_string('selectfilter', 'local_base') . ':</b></label></div>
+				  <div class="multiselect">
+					<div class="selectBox" onclick="showCheckboxes()">
+					  <select name="activesearch" id="activesearch">
+						<option>Select Filter(s)</option>
+					  </select>
+					  <div class="overSelect"></div>
+					</div>
+					<div id="checkboxes" class="usr-srch-field">
+					 <label for="checkuser">
+						<input type="checkbox" id="checkuser" /data-target="#id_user" >&nbsp;' . get_string('user', 'local_base') . '</label>
+				<label for="checkorganization">
+						<input type="checkbox" id="checkorganization"  data-target="#id_organization" />&nbsp;' . get_string('organization', 'local_base') . '</label>
+					  <label for="checksubgroup">
+						<input type="checkbox" id="checksubgroup"  data-target="#id_subgroup" />&nbsp;' . get_string('subgroup', 'local_base') . '</label>
+					  	  
+					</div>
+				</div> <button type="button" class="go-btn">' . get_string('go', 'local_base') . '</button>
+				');
+
+
+        $mform->addElement('html', '<br><br><br>');
+        $mform->addElement('html', '<div class="filter-elements">');
+        $mform->addElement('select', 'user', '<b>' . get_string('user', 'local_base') . ':</b>', $userarray, 'style="width: 40% !important;"');
+// 	$mform->addElement('select', 'organization','<b>'. get_string('organization', 'local_base').':</b>', $organization,'style="width: 40% !important;"');
+        $select = $mform->addElement('select', 'organization', '<b>' . get_string('organization', 'local_base') . ':</b>', $organization, 'style="width: 40% !important;"');
+        $select->setMultiple(true);
+        $select = $mform->addElement('select', 'subgroup', '<b>' . get_string('subgroup', 'local_base') . ':</b>', $subgroups, 'style="width: 40% !important;"');
+        $select->setMultiple(true);
+
+        $mform->addElement('html', '</div>');
+
+
+        $buttonarray = array();
+        $buttonarray[] = $mform->createElement('submit', 'submitbutton', get_string('updatereport', 'local_base'));
+        $buttonarray[] = $mform->createElement('button', 'removefilter', get_string('removefilters', 'local_base'), array('class' => 'remove-btn'));
+
+        $mform->addGroup($buttonarray, 'buttonar', '', ' ', false);
+        $mform->closeHeaderBefore('buttonar');
+    }
+
+}

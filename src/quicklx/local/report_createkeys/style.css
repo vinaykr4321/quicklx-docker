@@ -1,0 +1,20 @@
+.button_middle{ 
+   	align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.button_space_value{
+	margin: 1%;
+}
+.colours{
+	background-color: #ccc !important;
+}
+
+.btns-createnewkeys {
+	margin-bottom: 20px;
+	margin-left: -20%;
+}
+pre.notifytiny{
+	color:red !important;
+    font-size: 15px !important;
+}

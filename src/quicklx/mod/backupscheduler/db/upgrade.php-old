@@ -1,0 +1,13 @@
+<?php
+
+/**
+ *
+ * @package mod_backupscheduler
+ * @copyright 2018 Syllametrics | support@syllametrics.com
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ */
+defined('MOODLE_INTERNAL') || die();
+
+function xmldb_scheduler_upgrade($version = 0) {  
+}

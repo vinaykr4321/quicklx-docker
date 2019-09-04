@@ -1,0 +1,11 @@
+[29-May-2018 13:35:51 Europe/London] PHP Notice:  Undefined variable: foundfields in /var/www/html/iomad/report/usersreport/index.php on line 314
+[29-May-2018 13:35:51 Europe/London] PHP Notice:  Undefined variable: searchparams in /var/www/html/iomad/report/usersreport/index.php on line 379
+[29-May-2018 13:35:51 Europe/London] PHP Notice:  Undefined variable: foundfields in /var/www/html/iomad/report/usersreport/index.php on line 385
+[29-May-2018 13:35:51 Europe/London] PHP Notice:  Undefined variable: baseurl in /var/www/html/iomad/report/usersreport/index.php on line 673
+[29-May-2018 13:07:31 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /var/www/html/iomad/report/usersreport/index.php on line 481
+[30-May-2018 08:07:57 UTC] PHP Parse error:  syntax error, unexpected 'strtoupper' (T_STRING), expecting ')' in /var/www/html/iomad/report/usersreport/index.php on line 533
+[30-May-2018 13:03:03 UTC] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /var/www/html/iomad/report/usersreport/index.php on line 137
+[31-May-2018 09:41:55 UTC] PHP Parse error:  syntax error, unexpected '$usercount' (T_VARIABLE) in /var/www/html/iomad/report/usersreport/index.php on line 361
+[31-May-2018 09:42:56 UTC] PHP Parse error:  syntax error, unexpected '$usercount' (T_VARIABLE) in /var/www/html/iomad/report/usersreport/index.php on line 354
+[31-May-2018 09:54:42 UTC] PHP Parse error:  syntax error, unexpected ')' in /var/www/html/iomad/report/usersreport/index.php on line 489
+[31-May-2018 09:55:03 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /var/www/html/iomad/report/usersreport/index.php on line 489
